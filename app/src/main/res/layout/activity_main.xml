@@ -4,15 +4,71 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".MainActivity"
+    android:background="@drawable/gradient">
 
-    <TextView
+    <ImageView
+        android:id="@+id/imageView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
+        android:background="@mipmap/logo_foreground"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/start_textView1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Your CHOOSE"
+        app:layout_constraintTop_toBottomOf="@+id/imageView"
+        android:textColor="@color/white"
+        android:layout_marginStart="@dimen/_25sdp"
+        android:textSize="@dimen/_30ssp"
+        android:textStyle="bold"/>
+
+    <TextView
+        android:id="@+id/start_textView2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Your HEALTH"
+        app:layout_constraintTop_toBottomOf="@+id/start_textView1"
+        android:textColor="@color/white"
+        android:layout_marginStart="@dimen/_25sdp"
+        android:textSize="@dimen/_30ssp"
+        android:textStyle="bold"/>
+
+
+    <ImageView
+        android:id="@+id/start_imgVegetable1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="80dp"
+        android:background="@drawable/vegetables"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/start_textView2"/>
+
+    <ImageView
+        android:id="@+id/start_imgVegetable2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="80dp"
+        android:background="@drawable/bapcai"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/start_imgVegetable1"
+        app:layout_constraintTop_toBottomOf="@+id/start_textView2" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/start_imgVegetable1"
+        android:text="Started"
+        android:paddingStart="@dimen/_40sdp"
+        android:paddingEnd="@dimen/_40sdp"
+        android:textSize="@dimen/_20sdp"
+        android:background="@drawable/startbutton"
+        android:textColor="@color/white"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
