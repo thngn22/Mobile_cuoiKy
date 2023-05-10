@@ -43,4 +43,8 @@ dependencies {
     //sdp và ssp
     implementation 'com.intuit.sdp:sdp-android:1.1.0'
     implementation 'com.intuit.ssp:ssp-android:1.1.0'
+
+    //lotie cho phép add After Effect animation
+    implementation 'com.airbnb.android:lottie:5.2.0'
+
 }
