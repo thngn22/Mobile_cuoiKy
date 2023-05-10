@@ -68,29 +68,13 @@
                     app:layout_constraintTop_toBottomOf="@+id/tv" />
 
                 <androidx.constraintlayout.widget.ConstraintLayout
+                    app:layout_constraintHorizontal_weight="2"
                     android:id="@+id/lottie_container"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/_100sdp"
                     android:layout_marginTop="@dimen/_2sdp"
                     app:layout_constraintTop_toBottomOf="@id/search"
                     tools:layout_editor_absoluteX="19dp">
-
-                    <com.airbnb.lottie.LottieAnimationView
-                        android:id="@+id/lottieAnimationView2"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="16dp"
-
-                        android:paddingEnd="@dimen/_60sdp"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.0"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:lottie_autoPlay="true"
-                        app:lottie_loop="true"
-                        app:lottie_rawRes="@raw/shopping2"
-                        app:lottie_repeatMode="reverse" />
-
                     <TextView
                         android:id="@+id/lottie_order"
                         android:layout_width="@dimen/_92ssp"
@@ -104,13 +88,30 @@
                         android:padding="@dimen/_10sdp"
 
 
-                        app:layout_constraintBottom_toBottomOf="@+id/lottieAnimationView2"
+                        app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintHorizontal_bias="0.873"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
                         app:layout_constraintVertical_bias="0.562"
                         tools:ignore="MissingConstraints" />
+                    <com.airbnb.lottie.LottieAnimationView
+                        android:id="@+id/lottieAnimationView2"
+                        android:layout_width="@dimen/_180sdp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="16dp"
+
+                        android:paddingEnd="@dimen/_1sdp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="@+id/lottie_order"
+                        app:layout_constraintHorizontal_bias="0.0"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:lottie_autoPlay="true"
+                        app:lottie_loop="true"
+                        app:lottie_rawRes="@raw/shopping3"
+                        app:lottie_repeatMode="reverse" />
+
+
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
                 <TextView
