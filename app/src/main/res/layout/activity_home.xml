@@ -6,7 +6,8 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@drawable/gradient_main">
 
         <androidx.core.widget.NestedScrollView
             android:id="@+id/nestedScrollView2"
@@ -49,7 +50,7 @@
                     android:layout_height="@dimen/_40sdp"
                     android:layout_marginTop="@dimen/_10sdp"
                     android:layout_marginRight="@dimen/_10sdp"
-                    android:src="@drawable/profile"
+                    android:src="@drawable/man"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
@@ -91,8 +92,8 @@
                         android:id="@+id/lottie_order"
                         android:layout_width="@dimen/_92ssp"
                         android:layout_height="wrap_content"
-                        android:layout_marginEnd="40dp"
-                        android:layout_marginBottom="52dp"
+                        android:layout_marginEnd="24dp"
+                        android:layout_marginBottom="88dp"
                         android:background="@drawable/background_order"
                         android:text="Order Now"
                         android:textAlignment="center"
