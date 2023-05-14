@@ -7,117 +7,166 @@
 
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <ScrollView
+        android:id="@+id/scrollmain"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:context=".activities.ProductActivity">
+        android:layout_height="match_parent">
 
-        <LinearLayout
-            android:id="@+id/line1"
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/cstn"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            app:layout_constraintTop_toTopOf="parent">
+            android:layout_height="match_parent"
+            tools:context=".activities.ProductActivity">
 
-            <TextView
-                android:id="@+id/txtNameFood"
+            <LinearLayout
+                android:id="@+id/line1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <TextView
+                    android:id="@+id/txtNameFood"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_90sdp"
+
+                    android:text="Name Food"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:textAlignment="center"
+                    android:textColor="@color/teal_200"
+                    android:textSize="@dimen/_20sdp"
+                    android:textStyle="bold">
+
+                </TextView>
+
+                <TextView
+                    android:id="@+id/txtPrice"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="VND"
+                    android:textAlignment="center"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_15sdp">
+
+                </TextView>
+
+                <de.hdodenhof.circleimageview.CircleImageView
+
+                    android:id="@+id/image_product"
+                    android:layout_width="@dimen/_200sdp"
+                    android:layout_height="@dimen/_200sdp"
+                    android:layout_marginStart="@dimen/_50sdp"
+                    android:layout_marginTop="@dimen/_5sdp"
+
+                    android:layout_marginBottom="@dimen/_5sdp"
+                    android:padding="@dimen/_5sdp"
+                    android:paddingStart="@dimen/_6sdp"
+                    android:paddingEnd="@dimen/_6sdp"
+
+                    android:src="@drawable/profile"
+                    tools:ignore="MissingConstraints">
+
+                </de.hdodenhof.circleimageview.CircleImageView>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/line2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="horizontal"
                 android:padding="@dimen/_5sdp"
-                android:text="Name Food"
-                android:textAlignment="center"
-                android:textColor="@color/teal_200"
-                android:textSize="@dimen/_20sdp"
-                android:textStyle="bold">
+                app:layout_constraintTop_toBottomOf="@+id/line1">
 
-            </TextView>
+                <ImageView
+                    android:id="@+id/sub_btn_product"
+                    android:layout_width="@dimen/_30sdp"
+                    android:layout_height="@dimen/_30sdp"
+                    android:src="@drawable/minus_check_box">
 
-            <TextView
-                android:id="@+id/txtPrice"
+                </ImageView>
+
+                <EditText
+                    android:id="@+id/txt_product_amount"
+                    android:maxLines="1"
+                    android:maxLength="3"
+                    android:inputType="numberDecimal"
+                    android:background="@drawable/grey_background_edittext"
+                    android:layout_width="@dimen/_65sdp"
+                    android:layout_height="@dimen/_20sdp"
+                    android:layout_marginLeft="@dimen/_10sdp"
+                    android:layout_marginRight="@dimen/_10sdp"
+
+                    android:text="1"
+                    android:textAlignment="center"
+                    android:textSize="@dimen/_15sdp"
+                    android:textStyle="bold">
+
+                </EditText>
+
+                <ImageView
+                    android:id="@+id/add_btn_product"
+                    android:layout_width="@dimen/_30sdp"
+                    android:layout_height="@dimen/_30sdp"
+                    android:src="@drawable/add_box">
+
+                </ImageView>
+            </LinearLayout>
+
+            <ScrollView
+                android:id="@+id/scollview1"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="VND"
-                android:textAlignment="center"
-                android:textColor="@color/teal_200"
-                android:textSize="@dimen/_15sdp"
-                android:textStyle="bold">
+                android:layout_height="@dimen/_160sdp"
+                android:layout_marginStart="@dimen/_5sdp"
+                android:layout_marginTop="@dimen/_15sdp"
+                android:layout_marginEnd="@dimen/_5sdp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/line2">
 
-            </TextView>
-        </LinearLayout>
+                <TextView
+                    android:id="@+id/txt_desc"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/_5sdp"
+                    android:text="Description"
+                    android:textSize="@dimen/_14sdp"
+                    app:layout_constraintTop_toBottomOf="@+id/line2">
 
-        <ImageView
-            android:id="@+id/image_product"
-            android:layout_width="@dimen/_220sdp"
-            android:layout_height="@dimen/_220sdp"
-            android:layout_marginTop="@dimen/_5sdp"
-            android:padding="@dimen/_5sdp"
-            android:src="@drawable/profile"
+                </TextView>
 
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/line1">
+            </ScrollView>
 
-        </ImageView>
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/line3"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_60sdp"
 
-        <LinearLayout
-            android:id="@+id/line2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:orientation="horizontal"
-            android:padding="@dimen/_5sdp"
-            app:layout_constraintTop_toBottomOf="@+id/image_product">
+                android:paddingTop="@dimen/_12sdp"
 
-            <ImageView
-                android:id="@+id/sub_btn_product"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:src="@drawable/minus_check_box">
+                app:layout_constraintTop_toBottomOf="@id/scollview1"
+                tools:ignore="MissingConstraints">
 
-            </ImageView>
 
-            <TextView
-                android:id="@+id/txt_product_amount"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/_10sdp"
-                android:layout_marginRight="@dimen/_10sdp"
-                android:text="1"
-                android:textAlignment="center"
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/btn_add"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
 
-                android:textSize="@dimen/_25sdp">
+                    android:layout_marginStart="@dimen/_25sdp"
+                    android:layout_marginEnd="@dimen/_25sdp"
 
-            </TextView>
+                    android:background="@drawable/background_order"
+                    android:text="Add to Cart"
+                    tools:ignore="MissingConstraints">
 
-            <ImageView
-                android:id="@+id/add_btn_product"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:src="@drawable/add_box">
+                </androidx.appcompat.widget.AppCompatButton>
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
-            </ImageView>
-        </LinearLayout>
-        <TextView
-            android:id="@+id/txt_desc"
-            app:layout_constraintTop_toBottomOf="@+id/line2"
-            android:padding="@dimen/_5sdp"
-            android:text="Description"
-            android:textSize="@dimen/_14sdp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
 
-        </TextView>
-        <androidx.appcompat.widget.AppCompatButton
-            app:layout_constraintBottom_toBottomOf="parent"
-            android:id="@+id/btn_add"
-            android:text="Add to Cart"
-            android:layout_marginBottom="@dimen/_5sdp"
-            android:layout_marginStart="@dimen/_25sdp"
-            android:layout_marginEnd="@dimen/_25sdp"
-            android:background="@drawable/background_order"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-        </androidx.appcompat.widget.AppCompatButton>
-    </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
 </layout>

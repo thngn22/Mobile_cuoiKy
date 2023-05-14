@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "667073643297",
+    "project_id": "foodapp-87f24",
+    "storage_bucket": "foodapp-87f24.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:667073643297:android:323016d9f18dd2869a3460",
+        "android_client_info": {
+          "package_name": "vn.iotstar.nongsan"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "667073643297-tkcenobd1difhdhegp7sggcjtf8monbc.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB_KRWDDCjW3YfgThuciFq8OG-NneFXPZc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "667073643297-tkcenobd1difhdhegp7sggcjtf8monbc.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
