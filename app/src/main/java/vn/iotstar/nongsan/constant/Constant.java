@@ -5,7 +5,7 @@ import android.Manifest;
 
 public class Constant {
 
-    public static final String localhost = "192.168.1.11:4040";
+    public static final String localhost = "192.168.1.9:4040";
     //ACCESS
     public static final String ROOT_URL = "http://" + localhost + "/v1/api/";
     public static final String URL_SIGNUP = ROOT_URL + "auth/signup/";

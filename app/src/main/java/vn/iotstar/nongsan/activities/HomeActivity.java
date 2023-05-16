@@ -13,7 +13,7 @@ import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 
-import io.paperdb.Paper;
+//import io.paperdb.Paper;
 import vn.iotstar.nongsan.R;
 import vn.iotstar.nongsan.adapters.CategoryAdapter;
 import vn.iotstar.nongsan.adapters.PopularAdapter;
@@ -31,10 +31,18 @@ public class HomeActivity extends AppCompatActivity implements HomeEventClickLis
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_home);
-        Paper.init(this);
+//        Paper.init(this);
         initView();
         initData();
 
+        binding.avt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), ProfileActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        });
     }
 
     private void initData() {
