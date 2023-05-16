@@ -51,12 +51,12 @@ public class CategoryActivity extends AppCompatActivity implements CategoryEvent
 
         viewModel = new ViewModelProvider(this).get(CategoryViewModel.class);
         viewModel.searchModelMutableLiveData(searchName).observe(this, productModel -> {
-            if (productModel.isSuccess()) {
-                ProductAdapter adapter = new ProductAdapter(productModel.getResult(), this);
+            if (productModel.getStatus() == 200) {
+                ProductAdapter adapter = new ProductAdapter(productModel.getMetadata(), this);
                 if (adapter.getItemCount() == 0) {
                     binding.tvCategoryName.setText("Không tìm thấy sản phẩm!");
                 } else {
-                    binding.tvCategoryName.setText("Số lượng sản phẩm có: *" + searchName + "* trong tên là: " + productModel.getResult().size() + " món");
+                    binding.tvCategoryName.setText("Số lượng sản phẩm có: *" + searchName + "* trong tên là: " + productModel.getMetadata().size() + " món");
                 }
                 binding.rcCategoryMain.setAdapter(adapter);
             } else {
@@ -73,10 +73,10 @@ public class CategoryActivity extends AppCompatActivity implements CategoryEvent
         int idCate = getIntent().getIntExtra("idCate", 2);
 
         viewModel = new ViewModelProvider(this).get(CategoryViewModel.class);
-        viewModel.productModelMutableLiveData(idCate).observe(this, productModel -> {
-            if (productModel.isSuccess()) {
-                ProductAdapter adapter = new ProductAdapter(productModel.getResult(), this);
-                binding.tvCategoryName.setText(cateName + ": " + productModel.getResult().size() + " món");
+        viewModel.productModelMutableLiveData().observe(this, productModel -> {
+            if (productModel.getStatus() == 200) {
+                ProductAdapter adapter = new ProductAdapter(productModel.getMetadata(), this);
+                binding.tvCategoryName.setText(cateName + ": " + productModel.getMetadata().size() + " món");
                 binding.rcCategoryMain.setAdapter(adapter);
             }
         });
@@ -93,7 +93,7 @@ public class CategoryActivity extends AppCompatActivity implements CategoryEvent
     @Override
     public void onProductClick(Product product) {
         Intent intent = new Intent(getApplicationContext(), ProductActivity.class);
-        intent.putExtra("id", product.getIdMeal());
+        intent.putExtra("id", product.getId());
         startActivity(intent);
     }
 }

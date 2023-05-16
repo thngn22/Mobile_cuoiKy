@@ -18,9 +18,9 @@ public class ProductRepository {
         nongSanAPI = RetrofitInstance.getRetrofit().create(NongSanAPI.class);
     }
 
-    public MutableLiveData<ProductModel> getProductModel(int idCate) {
+    public MutableLiveData<ProductModel> getProductModel() {
         MutableLiveData<ProductModel> data = new MutableLiveData<>();
-        nongSanAPI.getProductModel(idCate).enqueue(new Callback<ProductModel>() {
+        nongSanAPI.getProductModel().enqueue(new Callback<ProductModel>() {
             @Override
             public void onResponse(Call<ProductModel> call, Response<ProductModel> response) {
                 if (response.isSuccessful()) {

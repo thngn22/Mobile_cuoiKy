@@ -3,26 +3,17 @@ package vn.iotstar.nongsan.models;
 import java.util.List;
 
 public class ProductModel {
-    private boolean success = false;
     private String message;
-
-    private List<Product> result;
-
-    public ProductModel(boolean success, String message, List<Product> result) {
-        this.success = success;
-        this.message = message;
-        this.result = result;
-    }
+    private int status;
+    private List<Product> metadata;
 
     public ProductModel() {
     }
 
-    public boolean isSuccess() {
-        return success;
-    }
-
-    public void setSuccess(boolean success) {
-        this.success = success;
+    public ProductModel(String message, int status, List<Product> metadata) {
+        this.message = message;
+        this.status = status;
+        this.metadata = metadata;
     }
 
     public String getMessage() {
@@ -33,11 +24,19 @@ public class ProductModel {
         this.message = message;
     }
 
-    public List<Product> getResult() {
-        return result;
+    public int getStatus() {
+        return status;
     }
 
-    public void setResult(List<Product> result) {
-        this.result = result;
+    public void setStatus(int status) {
+        this.status = status;
+    }
+
+    public List<Product> getMetadata() {
+        return metadata;
+    }
+
+    public void setMetadata(List<Product> metadata) {
+        this.metadata = metadata;
     }
 }

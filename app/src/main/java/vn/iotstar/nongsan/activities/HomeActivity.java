@@ -40,16 +40,16 @@ public class HomeActivity extends AppCompatActivity implements HomeEventClickLis
     private void initData() {
         homeViewModel = new ViewModelProvider(this).get(HomeViewModel.class);
         homeViewModel.categoryModelMutableLiveData().observe(this, categoryModel -> {
-            if (categoryModel.isSuccess()) {
-                CategoryAdapter adapter = new CategoryAdapter(categoryModel.getResult(), this);
+            if (categoryModel.getStatus() == 200) {
+                CategoryAdapter adapter = new CategoryAdapter(categoryModel.getMetadata(), this);
                 binding.rcCategory.setAdapter(adapter);
 //            Toast.makeText(HomeActivity.this, "Đã lấy dc", Toast.LENGTH_SHORT).show();
                 Log.d("logg", (String.valueOf(adapter.getItemCount())));
             }
         });
-        homeViewModel.productModelMutableLiveData(1).observe(this, productModel -> {
-            if (productModel.isSuccess()) {
-                PopularAdapter adapter = new PopularAdapter(productModel.getResult(), this);
+        homeViewModel.productModelMutableLiveData().observe(this, productModel -> {
+            if (productModel.getStatus() == 200) {
+                PopularAdapter adapter = new PopularAdapter(productModel.getMetadata(), this);
                 binding.rcPopular.setAdapter(adapter);
                 Log.d("logg", (String.valueOf(adapter.getItemCount())));
             }
@@ -91,14 +91,14 @@ public class HomeActivity extends AppCompatActivity implements HomeEventClickLis
     public void onCategoryClick(Category category) {
         Intent intent = new Intent(getApplicationContext(), CategoryActivity.class);
         intent.putExtra("idCate", category.getId());
-        intent.putExtra("categoryName", category.getCategory());
+        intent.putExtra("categoryName", category.getName());
         startActivity(intent);
     }
 
     @Override
     public void onPopularClick(Product product) {
         Intent intent = new Intent(getApplicationContext(), ProductActivity.class);
-        intent.putExtra("id", product.getIdMeal());
+        intent.putExtra("id", product.getId());
         startActivity(intent);
     }
 

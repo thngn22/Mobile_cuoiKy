@@ -1,49 +1,47 @@
 package vn.iotstar.nongsan.models;
 
 public class Category {
-    private int id;
-    private String category, categoryThumb, categoryDescription;
-
-    public Category(int id, String category, String categoryThumb, String categoryDescription) {
-        this.id = id;
-        this.category = category;
-        this.categoryThumb = categoryThumb;
-        this.categoryDescription = categoryDescription;
-    }
+   private String id, name, description, thumb;
 
     public Category() {
     }
 
-    public int getId() {
+    public Category(String id, String name, String description, String thumb) {
+        this.id = id;
+        this.name = name;
+        this.description = description;
+        this.thumb = thumb;
+    }
+
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 
-    public String getCategory() {
-        return category;
+    public String getName() {
+        return name;
     }
 
-    public void setCategory(String category) {
-        this.category = category;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public String getCategoryThumb() {
-        return categoryThumb;
+    public String getDescription() {
+        return description;
     }
 
-    public void setCategoryThumb(String categoryThumb) {
-        this.categoryThumb = categoryThumb;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
-    public String getCategoryDescription() {
-        return categoryDescription;
+    public String getThumb() {
+        return thumb;
     }
 
-    public void setCategoryDescription(String categoryDescription) {
-        this.categoryDescription = categoryDescription;
+    public void setThumb(String thumb) {
+        this.thumb = thumb;
     }
-
 }

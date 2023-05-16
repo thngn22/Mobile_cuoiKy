@@ -5,6 +5,7 @@ import com.google.gson.GsonBuilder;
 
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
+import vn.iotstar.nongsan.constant.Constant;
 
 public class RetrofitInstance {
     private static Retrofit retrofit;
@@ -14,7 +15,7 @@ public class RetrofitInstance {
     public static Retrofit getRetrofit(){
         if (retrofit == null){
             retrofit = new Retrofit.Builder()
-                    .baseUrl("http://192.168.1.11/foodapp/") //192.168.1.3 https://foodapp.free.beeceptor.com/
+                    .baseUrl(Constant.ROOT_URL) //192.168.1.3 https://foodapp.free.beeceptor.com/
                     .addConverterFactory(GsonConverterFactory.create(gson))
                     .build();
         }

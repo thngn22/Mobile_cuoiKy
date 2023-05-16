@@ -1,54 +1,120 @@
 package vn.iotstar.nongsan.models;
 
 public class Product {
-    private int id, idMeal, idCategory;
-    private String strMeal, strMealThumb;
+    private String id, name, thumb, description, category, slug, unit, review;
+    private int quantity, price, soldCount, star;
 
-    public Product(int id, int idMeal, int idCategory, String strMeal, String strMealThumb) {
-        this.id = id;
-        this.idMeal = idMeal;
-        this.idCategory = idCategory;
-        this.strMeal = strMeal;
-        this.strMealThumb = strMealThumb;
+    public Product() {
     }
 
-    public int getId() {
+    public Product(String id, String name, String thumb, String description, String category, String slug, String unit, String review, int quantity, int price, int soldCount, int star) {
+        this.id = id;
+        this.name = name;
+        this.thumb = thumb;
+        this.description = description;
+        this.category = category;
+        this.slug = slug;
+        this.unit = unit;
+        this.review = review;
+        this.quantity = quantity;
+        this.price = price;
+        this.soldCount = soldCount;
+        this.star = star;
+    }
+
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 
-    public int getIdMeal() {
-        return idMeal;
+    public String getName() {
+        return name;
     }
 
-    public void setIdMeal(int idMeal) {
-        this.idMeal = idMeal;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public int getIdCategory() {
-        return idCategory;
+    public String getThumb() {
+        return thumb;
     }
 
-    public void setIdCategory(int idCategory) {
-        this.idCategory = idCategory;
+    public void setThumb(String thumb) {
+        this.thumb = thumb;
     }
 
-    public String getStrMeal() {
-        return strMeal;
+    public String getDescription() {
+        return description;
     }
 
-    public void setStrMeal(String strMeal) {
-        this.strMeal = strMeal;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
-    public String getStrMealThumb() {
-        return strMealThumb;
+    public String getCategory() {
+        return category;
     }
 
-    public void setStrMealThumb(String strMealThumb) {
-        this.strMealThumb = strMealThumb;
+    public void setCategory(String category) {
+        this.category = category;
+    }
+
+    public String getSlug() {
+        return slug;
+    }
+
+    public void setSlug(String slug) {
+        this.slug = slug;
+    }
+
+    public String getUnit() {
+        return unit;
+    }
+
+    public void setUnit(String unit) {
+        this.unit = unit;
+    }
+
+    public String getReview() {
+        return review;
+    }
+
+    public void setReview(String review) {
+        this.review = review;
+    }
+
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
+    }
+
+    public int getPrice() {
+        return price;
+    }
+
+    public void setPrice(int price) {
+        this.price = price;
+    }
+
+    public int getSoldCount() {
+        return soldCount;
+    }
+
+    public void setSoldCount(int soldCount) {
+        this.soldCount = soldCount;
+    }
+
+    public int getStar() {
+        return star;
+    }
+
+    public void setStar(int star) {
+        this.star = star;
     }
 }

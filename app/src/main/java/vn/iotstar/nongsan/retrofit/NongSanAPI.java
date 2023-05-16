@@ -1,7 +1,7 @@
 package vn.iotstar.nongsan.retrofit;
 
 import java.util.List;
-
+import vn.iotstar.nongsan.constant.Constant;
 import retrofit2.Call;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
@@ -12,15 +12,13 @@ import vn.iotstar.nongsan.models.ProductDetailModel;
 import vn.iotstar.nongsan.models.ProductModel;
 
 public interface NongSanAPI {
-    @GET("category.php")
+
+    @GET(Constant.URL_CATEGORY)
     Call<CategoryModel> getCategoryModel();
 
-    @POST("meals.php")
-    @FormUrlEncoded
-    Call<ProductModel> getProductModel(
-            @Field("idCate")
-            int idCate
-    );
+    @GET(Constant.URL_PRODUCT_PUBLISHED)
+    Call<ProductModel> getProductModel();
+
 
     @POST("mealdetail.php")
     @FormUrlEncoded

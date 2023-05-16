@@ -39,7 +39,7 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.MyView
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
         holder.setBinding(list.get(position));
         Glide.with(holder.itemView)
-                .load(list.get(position).getCategoryThumb())
+                .load(list.get(position).getThumb())
                 .placeholder(R.drawable.rricardo)
                 .error(android.R.drawable.stat_notify_error)
                 .into(holder.binding.imgCate);

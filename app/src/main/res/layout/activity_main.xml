@@ -1,80 +1,81 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".activities.MainActivity"
-   >
-<androidx.constraintlayout.widget.ConstraintLayout
-    android:layout_height="match_parent"
-    android:layout_width="match_parent"
-    android:background="@drawable/gradient">
-    >
+    tools:context=".activities.MainActivity">
 
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@mipmap/logo_foreground"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/start_textView1"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Your CHOOSE"
-        app:layout_constraintTop_toBottomOf="@+id/imageView"
-        android:textColor="@color/white"
-        android:layout_marginStart="@dimen/_25sdp"
-        android:textSize="@dimen/_30ssp"
-        android:textStyle="bold"/>
+        android:layout_height="match_parent"
+        android:background="@drawable/gradient">
+        >
 
-    <TextView
-        android:id="@+id/start_textView2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Your HEALTH"
-        app:layout_constraintTop_toBottomOf="@+id/start_textView1"
-        android:textColor="@color/white"
-        android:layout_marginStart="@dimen/_25sdp"
-        android:textSize="@dimen/_30ssp"
-        android:textStyle="bold"/>
-
-
-    <ImageView
-        android:id="@+id/start_imgVegetable1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="80dp"
-        android:background="@drawable/vegetables"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/start_textView2"/>
-
-    <ImageView
-        android:id="@+id/start_imgVegetable2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="80dp"
-        android:background="@drawable/bapcai"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/start_imgVegetable1"
-        app:layout_constraintTop_toBottomOf="@+id/start_textView2" />
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@mipmap/logo_foreground"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-        android:id="@+id/start_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/start_imgVegetable1"
-        android:text="Started"
-        android:paddingStart="@dimen/_40sdp"
-        android:paddingEnd="@dimen/_40sdp"
-        android:textSize="@dimen/_20sdp"
-        android:background="@drawable/startbutton"
-        android:textColor="@color/white"/>
+            android:id="@+id/start_textView1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_25sdp"
+            android:text="Your CHOOSE"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_30ssp"
+            android:textStyle="bold"
+            app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <TextView
+            android:id="@+id/start_textView2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_25sdp"
+            android:text="Your HEALTH"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_30ssp"
+            android:textStyle="bold"
+            app:layout_constraintTop_toBottomOf="@+id/start_textView1" />
+
+
+        <ImageView
+            android:id="@+id/start_imgVegetable1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="80dp"
+            android:background="@drawable/vegetables"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/start_textView2" />
+
+        <ImageView
+            android:id="@+id/start_imgVegetable2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="80dp"
+            android:background="@drawable/bapcai"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/start_imgVegetable1"
+            app:layout_constraintTop_toBottomOf="@+id/start_textView2" />
+
+        <TextView
+            android:id="@+id/start_button"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/_45sdp"
+            android:background="@drawable/startbutton"
+            android:gravity="center"
+            android:paddingStart="@dimen/_60sdp"
+            android:paddingEnd="@dimen/_60sdp"
+            android:text="Start"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_20sdp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/start_imgVegetable1" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

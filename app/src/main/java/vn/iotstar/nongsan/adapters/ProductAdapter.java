@@ -35,7 +35,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.MyViewHo
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
         holder.setBinding(productList.get(position));
         Glide.with(holder.itemView)
-                .load(productList.get(position).getStrMealThumb())
+                .load(productList.get(position).getThumb())
                 .placeholder(R.drawable.rricardo)
                 .error(android.R.drawable.stat_notify_error)
                 .into(holder.binding.imgCategoryMain);

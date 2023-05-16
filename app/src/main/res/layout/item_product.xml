@@ -43,7 +43,7 @@
                 android:paddingTop="@dimen/_10sdp"
                 android:paddingBottom="@dimen/_10sdp"
                 android:gravity="center"
-                android:text="@{product.strMeal}"
+                android:text="@{product.name}"
                 android:textColor="@color/black"
                 android:textSize="@dimen/_10sdp"
                 app:layout_constraintBottom_toBottomOf="parent"

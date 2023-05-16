@@ -3,22 +3,17 @@ package vn.iotstar.nongsan.models;
 import java.util.List;
 
 public class CategoryModel {
-    private boolean success = false;
     private String message;
-    private List<Category> result;
+    private int status;
+    private List<Category> metadata;
 
-    public CategoryModel(boolean success, String message, List<Category> result) {
-        this.success = success;
+    public CategoryModel() {
+    }
+
+    public CategoryModel(String message, int status, List<Category> metadata) {
         this.message = message;
-        this.result = result;
-    }
-
-    public boolean isSuccess() {
-        return success;
-    }
-
-    public void setSuccess(boolean success) {
-        this.success = success;
+        this.status = status;
+        this.metadata = metadata;
     }
 
     public String getMessage() {
@@ -29,11 +24,19 @@ public class CategoryModel {
         this.message = message;
     }
 
-    public List<Category> getResult() {
-        return result;
+    public int getStatus() {
+        return status;
     }
 
-    public void setResult(List<Category> result) {
-        this.result = result;
+    public void setStatus(int status) {
+        this.status = status;
+    }
+
+    public List<Category> getMetadata() {
+        return metadata;
+    }
+
+    public void setMetadata(List<Category> metadata) {
+        this.metadata = metadata;
     }
 }

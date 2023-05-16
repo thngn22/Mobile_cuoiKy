@@ -30,7 +30,7 @@ public class CategoryRepository {
                     data.setValue(response.body());
                     Log.d("logg", "co du lieu category");
                 } else {
-                    Log.d("logg", "dell");
+                    Log.d("logg", "dell co du lieu tu category");
                 }
 
             }
