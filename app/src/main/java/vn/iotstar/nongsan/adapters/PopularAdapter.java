@@ -36,7 +36,7 @@ public class PopularAdapter extends RecyclerView.Adapter<PopularAdapter.MyViewHo
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
         holder.setBinding(listProduct.get(position));
-        Glide.with(holder.itemView).load(listProduct.get(position).getStrMealThumb())
+        Glide.with(holder.itemView).load(listProduct.get(position).getThumb())
                 .placeholder(R.drawable.rricardo)
                 .error(android.R.drawable.stat_notify_error)
                 .into(holder.binding.imgPopular);

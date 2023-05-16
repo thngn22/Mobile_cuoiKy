@@ -36,7 +36,7 @@
             android:layout_marginTop="4dp"
 
             android:gravity="center"
-            android:text="@{popular.strMeal}"
+            android:text="@{popular.name}"
             android:textColor="@color/black"
             android:textSize="@dimen/_12sdp"
             app:layout_constraintTop_toBottomOf="@+id/img_popular"

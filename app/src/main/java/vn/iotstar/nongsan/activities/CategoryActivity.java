@@ -71,7 +71,7 @@ public class CategoryActivity extends AppCompatActivity implements CategoryEvent
         Log.d("logg", cateName);
 
         int idCate = getIntent().getIntExtra("idCate", 2);
-
+        String categoryName = getIntent().getStringExtra("cateName");
         viewModel = new ViewModelProvider(this).get(CategoryViewModel.class);
         viewModel.productModelMutableLiveData().observe(this, productModel -> {
             if (productModel.getStatus() == 200) {
