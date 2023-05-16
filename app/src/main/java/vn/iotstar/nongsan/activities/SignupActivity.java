@@ -18,6 +18,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import vn.iotstar.nongsan.R;
+<<<<<<< HEAD
 import vn.iotstar.nongsan.databinding.ActivitySignupBinding;
 import vn.iotstar.nongsan.models.viewModels.ProductDetailViewModel;
 import vn.iotstar.nongsan.models.viewModels.SignupViewModel;
@@ -28,6 +29,13 @@ public class SignupActivity extends AppCompatActivity {
     ActivitySignupBinding binding;
     String phone, email, password, confirm_password;
 
+=======
+import vn.iotstar.nongsan.databinding.ActivityLoginBinding;
+import vn.iotstar.nongsan.databinding.ActivitySignupBinding;
+
+public class SignupActivity extends AppCompatActivity {
+    ActivitySignupBinding binding;
+>>>>>>> 590da5777b5ef5d9c160aa5fed2f6c9187b636af
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
