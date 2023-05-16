@@ -67,7 +67,7 @@ public class ProductDetail {
     }
 
     public double getPrice() {
-        return price * 22000;
+        return this.meal == null ? 0 : price * 22000;
     }
 
     public void setPrice(double price) {

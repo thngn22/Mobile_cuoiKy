@@ -40,4 +40,27 @@ public class ProductRepository {
         });
         return data;
     }
+
+    public MutableLiveData<ProductModel> getSearchModel(String searchName){
+        MutableLiveData<ProductModel> data = new MutableLiveData<>();
+        nongSanAPI.getProductDetailModelBySearch(searchName).enqueue(new Callback<ProductModel>() {
+            @Override
+            public void onResponse(Call<ProductModel> call, Response<ProductModel> response) {
+                if (response.isSuccessful()) {
+                    data.setValue(response.body());
+                    Log.d("logg", "co du lieu product");
+                } else {
+                    Log.d("logg", "dell");
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ProductModel> call, Throwable t) {
+                Log.d("logg", "Lỗi đọc ở đây nè, retrofit bị lỗi product");
+                Log.d("logg", t.getMessage());
+                data.setValue(null);
+            }
+        });
+        return data;
+    }
 }

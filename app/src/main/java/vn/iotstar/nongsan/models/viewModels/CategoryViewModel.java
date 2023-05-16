@@ -15,4 +15,8 @@ public class CategoryViewModel extends ViewModel {
     public MutableLiveData<ProductModel> productModelMutableLiveData(int idCate){
         return productRepository.getProductModel(idCate);
     }
+    public MutableLiveData<ProductModel> searchModelMutableLiveData(String searchName){
+        return productRepository.getSearchModel(searchName);
+    }
+
 }

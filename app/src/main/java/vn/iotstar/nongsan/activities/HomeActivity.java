@@ -10,9 +10,10 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
-import android.widget.GridLayout;
 
+import io.paperdb.Paper;
 import vn.iotstar.nongsan.R;
 import vn.iotstar.nongsan.adapters.CategoryAdapter;
 import vn.iotstar.nongsan.adapters.PopularAdapter;
@@ -30,6 +31,7 @@ public class HomeActivity extends AppCompatActivity implements HomeEventClickLis
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_home);
+        Paper.init(this);
         initView();
         initData();
 
@@ -70,6 +72,19 @@ public class HomeActivity extends AppCompatActivity implements HomeEventClickLis
                 startActivity(intent);
             }
         });
+        binding.search.setOnKeyListener(new View.OnKeyListener() {
+            @Override
+            public boolean onKey(View v, int keyCode, KeyEvent event) {
+                // If the event is a key-down event on the "enter" button
+                if ((event.getAction() == KeyEvent.ACTION_DOWN) && (keyCode == KeyEvent.KEYCODE_ENTER)) {
+                    // Perform action on key press
+                    onSearchClick(binding.search.getText().toString());
+                    return true;
+                }
+
+                return false;
+            }
+        });
     }
 
     @Override
@@ -86,4 +101,12 @@ public class HomeActivity extends AppCompatActivity implements HomeEventClickLis
         intent.putExtra("id", product.getIdMeal());
         startActivity(intent);
     }
+
+    @Override
+    public void onSearchClick(String searchName) {
+        Intent intent = new Intent(getApplicationContext(), CategoryActivity.class);
+        intent.putExtra("searchName", searchName);
+        startActivity(intent);
+    }
+
 }

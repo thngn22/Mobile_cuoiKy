@@ -1,2 +1,5 @@
-package vn.iotstar.nongsan.listener;public interface ChangeNumberListener {
+package vn.iotstar.nongsan.listener;
+
+public interface ChangeNumberListener {
+    void change();
 }

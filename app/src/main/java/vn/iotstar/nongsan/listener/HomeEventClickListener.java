@@ -6,5 +6,5 @@ import vn.iotstar.nongsan.models.Product;
 public interface HomeEventClickListener {
     void onCategoryClick(Category category);
     void onPopularClick(Product product);
-
+    void onSearchClick(String searchName);
 }

@@ -5,6 +5,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
+import androidx.databinding.adapters.SearchViewBindingAdapter;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
@@ -15,10 +16,12 @@ import vn.iotstar.nongsan.R;
 import vn.iotstar.nongsan.databinding.ItemCategoryBinding;
 import vn.iotstar.nongsan.listener.HomeEventClickListener;
 import vn.iotstar.nongsan.models.Category;
+import vn.iotstar.nongsan.models.Product;
 
 public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.MyViewHolder> {
     private List<Category> list;
     private HomeEventClickListener listener;
+
     public CategoryAdapter(List<Category> list, HomeEventClickListener listener) {
         this.list = list;
         this.listener = listener;
@@ -63,6 +66,8 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.MyView
                     listener.onCategoryClick(category);
                 }
             });
+
         }
+
     }
 }

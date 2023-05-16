@@ -31,9 +31,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/_90sdp"
 
-                    android:text="Name Food"
                     android:layout_gravity="center"
                     android:gravity="center"
+                    android:text="Name Food"
                     android:textAlignment="center"
                     android:textColor="@color/teal_200"
                     android:textSize="@dimen/_20sdp"
@@ -53,17 +53,14 @@
                 </TextView>
 
                 <de.hdodenhof.circleimageview.CircleImageView
-
                     android:id="@+id/image_product"
                     android:layout_width="@dimen/_200sdp"
                     android:layout_height="@dimen/_200sdp"
-                    android:layout_marginStart="@dimen/_50sdp"
+                    android:layout_gravity="center"
+
                     android:layout_marginTop="@dimen/_5sdp"
 
                     android:layout_marginBottom="@dimen/_5sdp"
-                    android:padding="@dimen/_5sdp"
-                    android:paddingStart="@dimen/_6sdp"
-                    android:paddingEnd="@dimen/_6sdp"
 
                     android:src="@drawable/profile"
                     tools:ignore="MissingConstraints">
@@ -91,14 +88,14 @@
 
                 <EditText
                     android:id="@+id/txt_product_amount"
-                    android:maxLines="1"
-                    android:maxLength="3"
-                    android:inputType="numberDecimal"
-                    android:background="@drawable/grey_background_edittext"
                     android:layout_width="@dimen/_65sdp"
                     android:layout_height="@dimen/_20sdp"
                     android:layout_marginLeft="@dimen/_10sdp"
                     android:layout_marginRight="@dimen/_10sdp"
+                    android:background="@drawable/grey_background_edittext"
+                    android:inputType="numberDecimal"
+                    android:maxLength="3"
+                    android:maxLines="1"
 
                     android:text="1"
                     android:textAlignment="center"

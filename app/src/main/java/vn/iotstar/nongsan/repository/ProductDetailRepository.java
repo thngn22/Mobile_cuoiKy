@@ -24,7 +24,7 @@ public class ProductDetailRepository {
             public void onResponse(Call<ProductDetailModel> call, Response<ProductDetailModel> response) {
                 if (response.isSuccessful()) {
                     data.setValue(response.body());
-                    Log.d("logg", "co du lieu category");
+                    Log.d("logg", "co du lieu product detail");
                 } else {
                     Log.d("logg", "dell");
                 }
@@ -32,7 +32,7 @@ public class ProductDetailRepository {
 
             @Override
             public void onFailure(Call<ProductDetailModel> call, Throwable t) {
-                Log.d("logg", "Lỗi đọc ở đây nè, retrofit bị lỗi category");
+                Log.d("logg", "Lỗi đọc ở đây nè, retrofit bị lỗi product detail");
                 Log.d("logg", t.getMessage());
                 data.setValue(null);
             }

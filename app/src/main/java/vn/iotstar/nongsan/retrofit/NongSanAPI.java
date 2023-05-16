@@ -28,4 +28,10 @@ public interface NongSanAPI {
             @Field("id")
             int id
     );
+    @POST("search.php")
+    @FormUrlEncoded
+    Call<ProductModel> getProductDetailModelBySearch(
+            @Field("searchName")
+            String searchName
+    );
 }

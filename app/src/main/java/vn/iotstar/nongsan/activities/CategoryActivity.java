@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 
 import java.util.Objects;
 
@@ -31,19 +32,59 @@ public class CategoryActivity extends AppCompatActivity implements CategoryEvent
         initData();
     }
 
-    private void initData(){
+    private void initData() {
+        String searchName = getIntent().getStringExtra("searchName");
         String cateName = getIntent().getStringExtra("categoryName");
-        int idCate = getIntent().getIntExtra("idCate", 1);
+        boolean isValid = searchName != null ? true : false;
+        Log.d("logg", String.valueOf(isValid));
+        Log.d("logg", "searchName is +" + searchName);
+        if (isValid) {
+            initDataSearch(searchName);
+        } else {
+            initDataCate(cateName);
+        }
+    }
+
+    private void initDataSearch(String searchName) {
+
+        Log.d("logg", searchName);
+
+        viewModel = new ViewModelProvider(this).get(CategoryViewModel.class);
+        viewModel.searchModelMutableLiveData(searchName).observe(this, productModel -> {
+            if (productModel.isSuccess()) {
+                ProductAdapter adapter = new ProductAdapter(productModel.getResult(), this);
+                if (adapter.getItemCount() == 0) {
+                    binding.tvCategoryName.setText("Không tìm thấy sản phẩm!");
+                } else {
+                    binding.tvCategoryName.setText("Số lượng sản phẩm có: *" + searchName + "* trong tên là: " + productModel.getResult().size() + " món");
+                }
+                binding.rcCategoryMain.setAdapter(adapter);
+            } else {
+                binding.tvCategoryName.setText("Không tìm thấy sản phẩm!");
+            }
+        });
+
+    }
+
+    private void initDataCate(String cateName) {
+
+        Log.d("logg", cateName);
+
+        int idCate = getIntent().getIntExtra("idCate", 2);
+
         viewModel = new ViewModelProvider(this).get(CategoryViewModel.class);
         viewModel.productModelMutableLiveData(idCate).observe(this, productModel -> {
-            if (productModel.isSuccess()){
+            if (productModel.isSuccess()) {
                 ProductAdapter adapter = new ProductAdapter(productModel.getResult(), this);
                 binding.tvCategoryName.setText(cateName + ": " + productModel.getResult().size() + " món");
                 binding.rcCategoryMain.setAdapter(adapter);
             }
         });
+
     }
-    private void initView(){
+
+
+    private void initView() {
         binding.rcCategoryMain.setHasFixedSize(true);
         RecyclerView.LayoutManager layoutManager = new GridLayoutManager(this, 2);
         binding.rcCategoryMain.setLayoutManager(layoutManager);
