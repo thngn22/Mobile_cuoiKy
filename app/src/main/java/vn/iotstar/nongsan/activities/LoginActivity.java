@@ -67,8 +67,9 @@ public class LoginActivity extends AppCompatActivity {
 
     public void onClickButton() {
 
-        email = binding.etEmailLogin.getText().toString();
-        password = binding.etPasswordLogin.getText().toString();
+        email = binding.etEmailLogin.getText().toString().trim();
+        password = binding.etPasswordLogin.getText().toString().trim();
+
         viewModel = new ViewModelProvider(this).get(LoginViewModel.class);
         viewModel.loginModelMutableLiveData(email, password).observe(this, loginModel -> {
             if (loginModel.getStatus() == 200) {
