@@ -35,7 +35,7 @@ public class ProductActivity extends AppCompatActivity {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_product);
         Paper.init(this);
         int id = getIntent().getIntExtra("id", 0);
-        getData();
+        //getData();
         onClickListener();
         showData(id);
     }
@@ -58,23 +58,24 @@ public class ProductActivity extends AppCompatActivity {
         }
     }
 
-    private void getData() {
-        viewModel = new ViewModelProvider(this).get(ProductViewModel.class);
-        viewModel.productDetailModelMutableLiveData().observe(this, productDetailModel -> {
-            if (productDetailModel.isSuccess()) {
-                productDetail = productDetailModel.getResult().get(0);
-                binding.txtNameFood.setText(productDetail.getMeal());
-                binding.txtDesc.setText(productDetail.getInstructions());
-                binding.txtPrice.setText(productDetail.getPrice() + "đ");
-                price = productDetail.getPrice();
-                Glide.with(this)
-                        .load(productDetail.getStrMealThumb())
-                        .placeholder(R.drawable.rricardo)
-                        .error(android.R.drawable.stat_notify_error)
-                        .into(binding.imageProduct);
-            }
-        });
-    }
+//    private void getData() {
+//        String id =  getIntent().getStringExtra("id");
+//        viewModel = new ViewModelProvider(this).get(ProductViewModel.class);
+//        viewModel.productModelMutableLiveData(id).observe(this, productDetailModel -> {
+//            if (productDetailModel.getStatus() == 200) {
+//                productDetail = productDetailModel.getMetadata();
+//                binding.txtNameFood.setText(productDetail.getMeal());
+//                binding.txtDesc.setText(productDetail.getInstructions());
+//                binding.txtPrice.setText(productDetail.getPrice() + "đ");
+//                price = productDetail.getPrice();
+//                Glide.with(this)
+//                        .load(productDetail.getStrMealThumb())
+//                        .placeholder(R.drawable.rricardo)
+//                        .error(android.R.drawable.stat_notify_error)
+//                        .into(binding.imageProduct);
+//            }
+//        });
+//    }
 
     private void onClickListener() {
         binding.addBtnProduct.setOnClickListener(new View.OnClickListener() {

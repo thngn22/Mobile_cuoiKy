@@ -14,7 +14,7 @@ public class ProductViewModel extends ViewModel {
     public ProductViewModel() {
         productRepository = new ProductRepository();
     }
-    public MutableLiveData<ProductModel> productModelMutableLiveData(){
-        return productRepository.getProductByCategoryModel();
+    public MutableLiveData<ProductModel> productModelMutableLiveData(String id){
+        return productRepository.getProductByCategoryModel(id);
     }
 }

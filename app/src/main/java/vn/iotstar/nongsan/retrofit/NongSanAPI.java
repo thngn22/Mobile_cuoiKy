@@ -2,6 +2,7 @@ package vn.iotstar.nongsan.retrofit;
 
 import java.util.List;
 
+import retrofit2.http.Headers;
 import retrofit2.http.Path;
 import vn.iotstar.nongsan.constant.Constant;
 import retrofit2.Call;
@@ -21,7 +22,7 @@ public interface NongSanAPI {
     Call<CategoryModel> getCategoryModel();
 
     @GET(Constant.URL_PRODUCT_PUBLISHED)
-    Call<ProductModel>  getProductModel();
+    Call<ProductModel> getProductModel();
 
     @POST(Constant.URL_SIGNUP)
     @FormUrlEncoded
@@ -40,6 +41,10 @@ public interface NongSanAPI {
     );
 
     @POST(Constant.URL_PRODUCT_BY_CATEGORY + ":{categoryid}")
+    @Headers({"Authorization: {accessToken}",
+            "x-client-id: {id}",
+            "x-rtoken-id: {refreshToken}"
+    })
     Call<ProductModel> getProductByCategoryModel(
             @Path("categoryid") String categoryid
     );

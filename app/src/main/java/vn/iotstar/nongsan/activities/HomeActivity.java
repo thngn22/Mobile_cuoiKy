@@ -55,7 +55,7 @@ public class HomeActivity extends AppCompatActivity implements HomeEventClickLis
                 Log.d("logg", (String.valueOf(adapter.getItemCount())));
             }
         });
-        homeViewModel.productModelMutableLiveData().observe(this, productModel -> {
+        homeViewModel.productModelMutableLiveData("7dfcd429-3d66-4d0a-914f-1a02158a4935").observe(this, productModel -> {
             if (productModel.getStatus() == 200) {
                 PopularAdapter adapter = new PopularAdapter(productModel.getMetadata(), this);
                 binding.rcPopular.setAdapter(adapter);
@@ -105,9 +105,9 @@ public class HomeActivity extends AppCompatActivity implements HomeEventClickLis
 
     @Override
     public void onPopularClick(Product product) {
-//        Intent intent = new Intent(getApplicationContext(), ProductActivity.class);
-//        intent.putExtra("id", product.getId());
-//        startActivity(intent);
+        Intent intent = new Intent(getApplicationContext(), ProductActivity.class);
+        intent.putExtra("idd", product.getId());
+        startActivity(intent);
     }
 
     @Override
