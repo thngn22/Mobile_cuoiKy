@@ -19,10 +19,13 @@
         android:theme="@style/Theme.MaterialComponents.Light.NoActionBar"
         tools:targetApi="31">
         <activity
-            android:name=".ConfirmOTP"
+            android:name=".activities.OrderActivity"
             android:exported="false" />
         <activity
-            android:name=".ForgetPasswordActivity"
+            android:name=".activities.ConfirmOTP"
+            android:exported="false" />
+        <activity
+            android:name=".activities.ForgetPasswordActivity"
             android:exported="false" />
         <activity
             android:name=".activities.CategoryActivity"

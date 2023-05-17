@@ -35,7 +35,7 @@ public interface NongSanAPI {
             @Field("phone") String phone
     );
 
-    @POST(Constant.URL_LOGIN)
+    @POST("auth/login")
     @FormUrlEncoded
     Call<LoginModel> getLoginModel(
             @Field("email") String email,
