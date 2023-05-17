@@ -69,6 +69,7 @@ public class SignupActivity extends AppCompatActivity {
                 if (signupModel.getStatus() == 201) {
                     Toast.makeText(this, signupModel.getMessage(), Toast.LENGTH_SHORT).show();
                     Log.d("logg", "Sign up successfully");
+
                     Intent intent = new Intent(SignupActivity.this, LoginActivity.class);
                     startActivity(intent);
 

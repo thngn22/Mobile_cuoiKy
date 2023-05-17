@@ -2,12 +2,13 @@ package vn.iotstar.nongsan.models;
 
 public class Product {
     private String id, name, thumb, description, category, slug, unit, review;
-    private int quantity, price, soldCount, star;
+    private int quantity, price, soldCount;
+    private double star;
 
     public Product() {
     }
 
-    public Product(String id, String name, String thumb, String description, String category, String slug, String unit, String review, int quantity, int price, int soldCount, int star) {
+    public Product(String id, String name, String thumb, String description, String category, String slug, String unit, String review, int quantity, int price, int soldCount, double star) {
         this.id = id;
         this.name = name;
         this.thumb = thumb;
@@ -110,11 +111,11 @@ public class Product {
         this.soldCount = soldCount;
     }
 
-    public int getStar() {
+    public double getStar() {
         return star;
     }
 
-    public void setStar(int star) {
+    public void setStar(double star) {
         this.star = star;
     }
 }

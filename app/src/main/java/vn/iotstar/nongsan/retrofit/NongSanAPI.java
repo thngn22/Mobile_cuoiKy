@@ -1,6 +1,8 @@
 package vn.iotstar.nongsan.retrofit;
 
 import java.util.List;
+
+import retrofit2.http.Path;
 import vn.iotstar.nongsan.constant.Constant;
 import retrofit2.Call;
 import retrofit2.http.Field;
@@ -19,7 +21,7 @@ public interface NongSanAPI {
     Call<CategoryModel> getCategoryModel();
 
     @GET(Constant.URL_PRODUCT_PUBLISHED)
-    Call<ProductModel> getProductModel();
+    Call<ProductModel>  getProductModel();
 
     @POST(Constant.URL_SIGNUP)
     @FormUrlEncoded
@@ -37,8 +39,9 @@ public interface NongSanAPI {
             @Field("password") String password
     );
 
-    @FormUrlEncoded
-    Call<ProductDetailModel> getProductDetailModel(
+    @POST(Constant.URL_PRODUCT_BY_CATEGORY + ":{categoryid}")
+    Call<ProductModel> getProductByCategoryModel(
+            @Path("categoryid") String categoryid
     );
     @POST("search.php")
     @FormUrlEncoded

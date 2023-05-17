@@ -19,6 +19,8 @@ public class Constant {
     //PRODUCT
     public static final String URL_PRODUCT_PUBLISHED = ROOT_URL + "product/published/";
 
+    public static final String URL_PRODUCT_BY_CATEGORY = ROOT_URL + "product/category/";
+
 
 
     //    public static final String URL_CATEGORY= "http://app.iotstar.vn/appfoods/categories.php";

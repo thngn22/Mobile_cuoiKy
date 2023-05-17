@@ -105,9 +105,9 @@ public class HomeActivity extends AppCompatActivity implements HomeEventClickLis
 
     @Override
     public void onPopularClick(Product product) {
-        Intent intent = new Intent(getApplicationContext(), ProductActivity.class);
-        intent.putExtra("id", product.getId());
-        startActivity(intent);
+//        Intent intent = new Intent(getApplicationContext(), ProductActivity.class);
+//        intent.putExtra("id", product.getId());
+//        startActivity(intent);
     }
 
     @Override

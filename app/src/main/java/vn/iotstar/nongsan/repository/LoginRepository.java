@@ -26,7 +26,7 @@ public class LoginRepository {
             @Override
             public void onResponse(Call<LoginModel> call, Response<LoginModel> response) {
                 if (response.isSuccessful()) {
-                    data.setValue(response.body());
+                    data.postValue(response.body());
                     Log.d("logg", "co du lieu Login account");
 
                 } else {

@@ -77,10 +77,10 @@ public class CategoryActivity extends AppCompatActivity implements CategoryEvent
 
         Log.d("logg", cateName);
 
-        int idCate = getIntent().getIntExtra("idCate", 2);
+        String idCate = getIntent().getStringExtra("idCate");
         String categoryName = getIntent().getStringExtra("cateName");
         viewModel = new ViewModelProvider(this).get(CategoryViewModel.class);
-        viewModel.productModelMutableLiveData().observe(this, productModel -> {
+        viewModel.productModelMutableLiveData(idCate).observe(this, productModel -> {
             if (productModel.getStatus() == 200) {
                 ProductAdapter adapter = new ProductAdapter(productModel.getMetadata(), this);
                 binding.tvCategoryName.setText(cateName + ": " + productModel.getMetadata().size() + " món");
@@ -99,8 +99,8 @@ public class CategoryActivity extends AppCompatActivity implements CategoryEvent
 
     @Override
     public void onProductClick(Product product) {
-        Intent intent = new Intent(getApplicationContext(), ProductActivity.class);
-        intent.putExtra("id", product.getId());
-        startActivity(intent);
+//        Intent intent = new Intent(getApplicationContext(), ProductActivity.class);
+//        intent.putExtra("id", product.getId());
+//        startActivity(intent);
     }
 }

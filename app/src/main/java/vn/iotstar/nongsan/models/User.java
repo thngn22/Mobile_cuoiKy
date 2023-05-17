@@ -3,7 +3,12 @@ package vn.iotstar.nongsan.models;
 public class User {
     private String id, name, email, phone, image;
 
-    public User() {
+    public User(User u) {
+        this.id = u.getId();
+        this.name = u.getName();
+        this.email = u.getEmail();
+        this.phone = u.getPhone();
+        this.image = u.getImage();
     }
 
     public User(String id, String name, String email, String phone, String image) {
@@ -12,6 +17,10 @@ public class User {
         this.email = email;
         this.phone = phone;
         this.image = image;
+    }
+
+    public User() {
+
     }
 
     public String getId() {
