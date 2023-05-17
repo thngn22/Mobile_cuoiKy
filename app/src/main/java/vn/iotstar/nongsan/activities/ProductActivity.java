@@ -18,6 +18,7 @@ import io.paperdb.Paper;
 import vn.iotstar.nongsan.R;
 import vn.iotstar.nongsan.databinding.ActivityProductBinding;
 import vn.iotstar.nongsan.models.Cart;
+import vn.iotstar.nongsan.models.Product;
 import vn.iotstar.nongsan.models.ProductDetail;
 import vn.iotstar.nongsan.models.viewModels.ProductViewModel;
 import vn.iotstar.nongsan.utils.UtilsCart;
@@ -25,7 +26,7 @@ import vn.iotstar.nongsan.utils.UtilsCart;
 public class ProductActivity extends AppCompatActivity {
     ProductViewModel viewModel;
     ActivityProductBinding binding;
-    ProductDetail productDetail;
+    Product product;
     int amount = 1;
     double price = 0;
 
@@ -61,9 +62,8 @@ public class ProductActivity extends AppCompatActivity {
     private void getData() {
 //        String id =  getIntent().getStringExtra("id");
 //        viewModel = new ViewModelProvider(this).get(ProductViewModel.class);
-//        viewModel.productModelMutableLiveData(id).observe(this, productDetailModel -> {
-//            if (productDetailModel.getStatus() == 200) {
-//                productDetail = productDetailModel.getMetadata();
+//        product
+//        product.getCategory()
 //                binding.txtNameFood.setText(productDetail.getMeal());
 //                binding.txtDesc.setText(productDetail.getInstructions());
 //                binding.txtPrice.setText(productDetail.getPrice() + "đ");
@@ -73,8 +73,7 @@ public class ProductActivity extends AppCompatActivity {
 //                        .placeholder(R.drawable.rricardo)
 //                        .error(android.R.drawable.stat_notify_error)
 //                        .into(binding.imageProduct);
-//            }
-//        });
+
     }
 
     private void onClickListener() {
@@ -133,18 +132,18 @@ public class ProductActivity extends AppCompatActivity {
         int index = 0;
         if (UtilsCart.listCart.size() > 0) {
             for (int i = 0; i < UtilsCart.listCart.size(); i++) {
-                if (UtilsCart.listCart.get(i).getProductDetail().getId() == productDetail.getId()) {
-                    checkExist = true;
-                    index = i;
-                    break;
-                }
+//                if (UtilsCart.listCart.get(i).getProductDetail().getId() == productDetail.getId()) {
+//                    checkExist = true;
+//                    index = i;
+//                    break;
+//                }
             }
         }
         if (checkExist) {
             UtilsCart.listCart.get(index).setAmount(amount);
         } else {
             Cart cart = new Cart();
-            cart.setProductDetail(productDetail);
+         //   cart.setProductDetail(productDetail);
             cart.setAmount(amount);
             UtilsCart.listCart.add(cart);
         }

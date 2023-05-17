@@ -17,6 +17,7 @@ import org.json.JSONObject;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 import vn.iotstar.nongsan.R;
@@ -61,8 +62,9 @@ public class CategoryActivity extends AppCompatActivity implements CategoryEvent
         viewModel = new ViewModelProvider(this).get(CategoryViewModel.class);
         viewModel.searchModelMutableLiveData(searchName).observe(this, productModel -> {
             if (productModel.getStatus() == 200) {
-
-                    ProductAdapter adapter = new ProductAdapter(productModel.getMetadata(), this);
+                    Log.d("logg", productModel.getMetadata().toString());
+                    List<Product> list = productModel.getMetadata();
+                    ProductAdapter adapter = new ProductAdapter(list, this);
                 if (adapter.getItemCount() == 0) {
                     binding.tvCategoryName.setText("Không tìm thấy sản phẩm!");
                 } else {
@@ -72,7 +74,9 @@ public class CategoryActivity extends AppCompatActivity implements CategoryEvent
             } else {
                 binding.tvCategoryName.setText("Không tìm thấy sản phẩm!");
             }
+
         });
+
 
     }
 
@@ -87,13 +91,16 @@ public class CategoryActivity extends AppCompatActivity implements CategoryEvent
 //        Log.d("logg", UtilsUser.user.getId());
 
         viewModel = new ViewModelProvider(this).get(CategoryViewModel.class);
+        String accessToken =  UtilsTokens.tokens.getAccessToken();
+        String clientId =  UtilsUser.user.getId();
+        String refreshToken = UtilsTokens.tokens.getRefreshToken();
 
-        viewModel.productModelMutableLiveData(categoryId, UtilsTokens.tokens.getAccessToken(), UtilsUser.user.getId(), UtilsTokens.tokens.getRefreshToken()).observe(this, productModel -> {
+        viewModel.productModelMutableLiveData(categoryId, accessToken, clientId, refreshToken).observe(this, productModel -> {
             if (productModel.getStatus() == 200) {
                 ProductAdapter adapter = new ProductAdapter(productModel.getMetadata(), this);
                 binding.tvCategoryName.setText(cateName + ": " + productModel.getMetadata().size() + " sản phẩm");
                 binding.rcCategoryMain.setAdapter(adapter);
-                Log.d("logg", (String.valueOf(adapter.getItemCount())));
+                Log.d("logg", "số lượng sản phẩm " + (adapter.getItemCount()));
             }
             else{
                 Toast.makeText(this, productModel.getMessage(), Toast.LENGTH_SHORT).show();

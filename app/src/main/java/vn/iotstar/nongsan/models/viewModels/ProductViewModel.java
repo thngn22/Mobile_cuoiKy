@@ -3,8 +3,6 @@ package vn.iotstar.nongsan.models.viewModels;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-import vn.iotstar.nongsan.activities.ProductActivity;
-import vn.iotstar.nongsan.models.ProductDetailModel;
 import vn.iotstar.nongsan.models.ProductModel;
 import vn.iotstar.nongsan.repository.ProductRepository;
 

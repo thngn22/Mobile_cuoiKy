@@ -51,7 +51,7 @@ public class ProductRepository {
             public void onResponse(Call<ProductModel> call, Response<ProductModel> response) {
                 if (response.isSuccessful()) {
                     data.setValue(response.body());
-                    Log.d("logg", "co du lieu product");
+                    Log.d("logg", "co du lieu product ham getProductByC");
                 } else {
                     Log.d("logg", "dell");
                 }

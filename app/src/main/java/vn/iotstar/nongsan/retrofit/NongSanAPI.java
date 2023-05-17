@@ -42,9 +42,9 @@ public interface NongSanAPI {
             @Field("password") String password
     );
 
-    @POST(Constant.URL_PRODUCT_BY_CATEGORY + ":{categoryid}/")
-    Call<ProductModel> getProductByCategoryModel(
-            @Path("categoryid") String categoryId,
+    @POST(Constant.URL_PRODUCT_BY_CATEGORY + ":{categoryId}/")
+    Call<ProductModel>  getProductByCategoryModel(
+            @Path("categoryId") String categoryId,
             @Header("Authorization") String accessToken,
             @Header("x-client-id") String clientId,
             @Header("x-rtoken-id") String refreshToken

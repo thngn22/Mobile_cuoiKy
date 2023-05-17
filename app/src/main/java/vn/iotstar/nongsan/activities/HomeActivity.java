@@ -66,6 +66,7 @@ public class HomeActivity extends AppCompatActivity implements HomeEventClickLis
                 Log.d("logg", (String.valueOf(adapter.getItemCount())));
             }
         });
+
     }
 
     private void initView() {
@@ -111,6 +112,18 @@ public class HomeActivity extends AppCompatActivity implements HomeEventClickLis
     public void onPopularClick(Product product) {
         Intent intent = new Intent(getApplicationContext(), ProductActivity.class);
         intent.putExtra("id", product.getId());
+        intent.putExtra("name", product.getName());
+        intent.putExtra("thumb", product.getThumb());
+        intent.putExtra("quantity", product.getQuantity());
+        intent.putExtra("price", product.getPrice());
+        intent.putExtra("description", product.getDescription());
+        intent.putExtra("category", product.getCategory());
+        intent.putExtra("slug", product.getSlug());
+        intent.putExtra("unit", product.getUnit());
+        intent.putExtra("soldCount", product.getSoldCount());
+        intent.putExtra("star", product.getStar());
+        intent.putExtra("review", product.getName());
+
         startActivity(intent);
     }
 
