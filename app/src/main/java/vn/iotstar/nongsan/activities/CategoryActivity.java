@@ -10,6 +10,12 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.lang.reflect.Array;
+import java.util.ArrayList;
 import java.util.Objects;
 
 import vn.iotstar.nongsan.R;
@@ -52,7 +58,8 @@ public class CategoryActivity extends AppCompatActivity implements CategoryEvent
         viewModel = new ViewModelProvider(this).get(CategoryViewModel.class);
         viewModel.searchModelMutableLiveData(searchName).observe(this, productModel -> {
             if (productModel.getStatus() == 200) {
-                ProductAdapter adapter = new ProductAdapter(productModel.getMetadata(), this);
+
+                    ProductAdapter adapter = new ProductAdapter(productModel.getMetadata(), this);
                 if (adapter.getItemCount() == 0) {
                     binding.tvCategoryName.setText("Không tìm thấy sản phẩm!");
                 } else {

@@ -1,7 +1,5 @@
 package vn.iotstar.nongsan.activities;
 
-import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -12,30 +10,20 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 import androidx.lifecycle.ViewModelProvider;
 
-import com.bumptech.glide.Glide;
-
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import vn.iotstar.nongsan.R;
-<<<<<<< HEAD
+
 import vn.iotstar.nongsan.databinding.ActivitySignupBinding;
-import vn.iotstar.nongsan.models.viewModels.ProductDetailViewModel;
 import vn.iotstar.nongsan.models.viewModels.SignupViewModel;
-import vn.iotstar.nongsan.repository.SignupRepository;
+
 
 public class SignupActivity extends AppCompatActivity {
     SignupViewModel viewModel;
     ActivitySignupBinding binding;
-    String phone, email, password, confirm_password;
+    String name, phone, email, password, confirm_password;
 
-=======
-import vn.iotstar.nongsan.databinding.ActivityLoginBinding;
-import vn.iotstar.nongsan.databinding.ActivitySignupBinding;
-
-public class SignupActivity extends AppCompatActivity {
-    ActivitySignupBinding binding;
->>>>>>> 590da5777b5ef5d9c160aa5fed2f6c9187b636af
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,6 +33,14 @@ public class SignupActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 onClickButton();
+            }
+        });
+        binding.redirectLogin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
+                startActivity(intent);
+
             }
         });
     }
@@ -61,6 +57,7 @@ public class SignupActivity extends AppCompatActivity {
     }
 
     public void onClickButton() {
+        name = binding.etName.getText().toString();
         phone = binding.etPhone.getText().toString();
         email = binding.etEmail.getText().toString();
         password = binding.etPassword.getText().toString();
@@ -68,12 +65,15 @@ public class SignupActivity extends AppCompatActivity {
 
         if (isPasswordMatching(password, confirm_password)) {
             viewModel = new ViewModelProvider(this).get(SignupViewModel.class);
-            viewModel.signupModelMutableLiveData(email, password, phone).observe(this, signupModel -> {
-                if (signupModel.getStatus() == 200) {
+            viewModel.signupModelMutableLiveData(name, email, password, phone).observe(this, signupModel -> {
+                if (signupModel.getStatus() == 201) {
                     Toast.makeText(this, signupModel.getMessage(), Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent(this, LoginActivity.class);
+                    Log.d("logg", "Sign up successfully");
+                    Intent intent = new Intent(SignupActivity.this, LoginActivity.class);
                     startActivity(intent);
+
                 } else {
+                    Toast.makeText(this, signupModel.getMessage(), Toast.LENGTH_SHORT).show();
                     Log.d("logg", signupModel.getMessage());
                 }
             });

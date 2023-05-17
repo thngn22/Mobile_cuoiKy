@@ -1,13 +1,18 @@
 package vn.iotstar.nongsan.repository;
 
+import android.content.Intent;
 import android.util.Log;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.MutableLiveData;
 
+import java.util.Objects;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+import vn.iotstar.nongsan.activities.SignupActivity;
 import vn.iotstar.nongsan.models.ProductModel;
 import vn.iotstar.nongsan.models.SignupModel;
 import vn.iotstar.nongsan.models.viewModels.SignupViewModel;
@@ -21,19 +26,18 @@ public class SignupRepository{
         nongSanAPI = RetrofitInstance.getRetrofit().create(NongSanAPI.class);
     }
 
-    public MutableLiveData<SignupModel> getSignupModel(String email, String password, String phone) {
+    public MutableLiveData<SignupModel> getSignupModel(String name, String email, String password, String phone) {
 
-//        getIntent().putExtra("email", email);
-//        getIntent().putExtra("password", password);
-//        getIntent().putExtra("phone", phone);
         MutableLiveData<SignupModel> data = new MutableLiveData<>();
-        nongSanAPI.getSignupModel(email, password, phone).enqueue(new Callback<SignupModel>() {
+        nongSanAPI.getSignupModel(name, email, password, phone).enqueue(new Callback<SignupModel>() {
             @Override
             public void onResponse(Call<SignupModel> call, Response<SignupModel> response) {
                 if (response.isSuccessful()) {
                     data.setValue(response.body());
                     Log.d("logg", "co du lieu Sign Up account");
+
                 } else {
+
                     Log.d("logg", "dell co user");
                 }
             }

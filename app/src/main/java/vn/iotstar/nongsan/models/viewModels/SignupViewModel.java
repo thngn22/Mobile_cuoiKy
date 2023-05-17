@@ -13,7 +13,7 @@ public class SignupViewModel extends ViewModel {
         signupRepository = new SignupRepository();
     }
 
-    public MutableLiveData<SignupModel> signupModelMutableLiveData(String email, String password, String phone) {
-        return signupRepository.getSignupModel(email, password, phone);
+    public MutableLiveData<SignupModel> signupModelMutableLiveData(String name, String email, String password, String phone) {
+        return signupRepository.getSignupModel(name, email, password, phone);
     }
 }

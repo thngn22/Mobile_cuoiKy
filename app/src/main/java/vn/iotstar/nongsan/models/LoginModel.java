@@ -2,21 +2,22 @@ package vn.iotstar.nongsan.models;
 
 import com.google.gson.annotations.SerializedName;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+
 import java.util.List;
 
-import kotlin.jvm.internal.SerializedIr;
-
-public class SignupModel {
-
+public class LoginModel {
     private String message;
     int status;
-    @SerializedName("shop")
-    private List<String> metadata;
+    //@SerializedName("user")
+    //@SerializedName("user")
+    private JSONObject metadata;
 
-    public SignupModel() {
+    public LoginModel() {
     }
 
-    public SignupModel(String message, int status, List<String> metadata) {
+    public LoginModel(String message, int status, JSONObject metadata) {
         this.message = message;
         this.status = status;
         this.metadata = metadata;
@@ -38,11 +39,11 @@ public class SignupModel {
         this.status = status;
     }
 
-    public List<String> getMetadata() {
+    public JSONObject getMetadata() {
         return metadata;
     }
 
-    public void setMetadata(List<String> metadata) {
+    public void setMetadata(JSONObject metadata) {
         this.metadata = metadata;
     }
 }

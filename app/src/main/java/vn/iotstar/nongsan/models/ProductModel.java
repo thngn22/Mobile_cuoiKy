@@ -1,5 +1,8 @@
 package vn.iotstar.nongsan.models;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+
 import java.util.List;
 
 public class ProductModel {

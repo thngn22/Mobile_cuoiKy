@@ -5,9 +5,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     tools:context=".activities.LoginActivity">
-<data>
+    <data>
 
-</data>
+    </data>
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -35,7 +35,7 @@
             app:layout_constraintBottom_toBottomOf="@+id/imageView" />
 
         <EditText
-            android:id="@+id/et_email_login"
+            android:id="@+id/et_confirm_pass1"
             android:layout_width="match_parent"
             android:layout_height="@dimen/_40sdp"
             android:layout_marginStart="@dimen/_28sdp"
@@ -43,7 +43,7 @@
             android:layout_marginEnd="@dimen/_28sdp"
             android:background="@drawable/grey_background_edittext"
             android:ems="10"
-            android:hint="Enter your email"
+            android:hint="Enter your new password"
             android:inputType="textEmailAddress"
             android:maxLength="100"
             android:maxLines="1"
@@ -56,7 +56,7 @@
 
 
         <EditText
-            android:id="@+id/et_password_login"
+            android:id="@+id/et_confirm_pass2"
             android:layout_width="match_parent"
             android:layout_height="@dimen/_40sdp"
             android:layout_marginStart="@dimen/_28sdp"
@@ -64,50 +64,39 @@
             android:layout_marginEnd="@dimen/_28sdp"
             android:background="@drawable/grey_background_edittext"
             android:ems="10"
-            android:hint="Enter your password"
+            android:hint="Confirm your new password"
             android:inputType="textPassword"
             android:maxLength="100"
             android:maxLines="1"
             android:paddingStart="@dimen/_15sdp"
             android:textColor="#858585"
             android:textSize="@dimen/_15sdp"
-            app:layout_constraintTop_toBottomOf="@+id/et_email_login" />
+            app:layout_constraintTop_toBottomOf="@+id/et_confirm_pass1" />
 
         <TextView
-            android:id="@+id/fgt_pass"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_12sdp"
-            android:layout_marginEnd="@dimen/_28sdp"
-            android:text="Forgot your password?"
-            android:textAlignment="viewEnd"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/et_password_login" />
-
-        <TextView
-            android:id="@+id/btn_login"
+            android:id="@+id/btn_confirm"
             android:layout_width="match_parent"
             android:layout_height="@dimen/_50sdp"
             android:layout_marginStart="@dimen/_40sdp"
-            android:layout_marginTop="@dimen/_10sdp"
             android:layout_marginEnd="@dimen/_40sdp"
             android:background="@drawable/startbutton"
             android:gravity="center"
-            android:text="Login"
+            android:text="Confirm"
             android:textColor="@color/white"
             android:textSize="@dimen/_25sdp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/fgt_pass" />
+            tools:layout_editor_absoluteY="516dp"
+            tools:ignore="MissingConstraints" />
 
         <TextView
-            android:id="@+id/linkToSignUp"
+            android:id="@+id/linkToSignUp2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/_20sdp"
-            android:text="Don't have an account? Sign up here!!"
+            android:text="Already have an account? Login here!"
             android:textAlignment="center"
-            app:layout_constraintTop_toBottomOf="@+id/btn_login" />
+            app:layout_constraintTop_toBottomOf="@+id/btn_confirm" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

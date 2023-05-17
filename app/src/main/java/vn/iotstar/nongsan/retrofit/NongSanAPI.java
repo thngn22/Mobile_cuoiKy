@@ -8,6 +8,7 @@ import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
 import vn.iotstar.nongsan.models.CategoryModel;
+import vn.iotstar.nongsan.models.LoginModel;
 import vn.iotstar.nongsan.models.ProductDetailModel;
 import vn.iotstar.nongsan.models.ProductModel;
 import vn.iotstar.nongsan.models.SignupModel;
@@ -23,22 +24,21 @@ public interface NongSanAPI {
     @POST(Constant.URL_SIGNUP)
     @FormUrlEncoded
     Call<SignupModel> getSignupModel(
+            @Field("name") String name,
             @Field("email") String email,
             @Field("password") String password,
             @Field("phone") String phone
-
     );
 
-//    @Headers({
-//            "Accept: application/json",
-//            "User-Agent: Your-App-Name",
-//            "Cache-Control: max-age=640000"
-//    })
-    @POST("mealdetail.php")
+    @POST(Constant.URL_LOGIN)
+    @FormUrlEncoded
+    Call<LoginModel> getLoginModel(
+            @Field("email") String email,
+            @Field("password") String password
+    );
+
     @FormUrlEncoded
     Call<ProductDetailModel> getProductDetailModel(
-            @Field("id")
-            int id
     );
     @POST("search.php")
     @FormUrlEncoded

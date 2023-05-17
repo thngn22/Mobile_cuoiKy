@@ -13,7 +13,7 @@
             android:id="@+id/imageView2"
             android:layout_width="@dimen/_160sdp"
             android:layout_height="@dimen/_160sdp"
-            android:layout_marginTop="68dp"
+            android:layout_marginTop="@dimen/_25sdp"
             android:background="@mipmap/logo_foreground"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.497"
@@ -24,145 +24,111 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Sign Up"
-<<<<<<< HEAD
+            android:textAlignment="center"
             android:textColor="@color/purple_500"
             android:textSize="@dimen/_24sdp"
             android:textStyle="bold"
-            android:textAlignment="center"
             app:layout_constraintBottom_toBottomOf="@+id/imageView2" />
+
+        <EditText
+            android:id="@+id/et_name"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_40sdp"
+            android:layout_marginStart="@dimen/_28sdp"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:layout_marginEnd="@dimen/_28sdp"
+            android:background="@drawable/grey_background_edittext"
+            android:ems="10"
+            android:hint="Enter your name"
+            android:inputType="text"
+            android:maxLength="100"
+            android:maxLines="1"
+            android:paddingStart="@dimen/_15sdp"
+            android:textColor="#858585"
+            android:textSize="@dimen/_15sdp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageView2" />
 
         <EditText
             android:id="@+id/et_phone"
-=======
-            android:textAlignment="center"
-            android:textColor="@color/start_color"
-            android:textSize="@dimen/_24sdp"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="@+id/imageView2" />
 
-        <EditText
-            android:id="@+id/editText1"
->>>>>>> 590da5777b5ef5d9c160aa5fed2f6c9187b636af
             android:layout_width="match_parent"
             android:layout_height="@dimen/_40sdp"
             android:layout_marginStart="@dimen/_28sdp"
-            android:layout_marginTop="@dimen/_20sdp"
+            android:layout_marginTop="@dimen/_10sdp"
             android:layout_marginEnd="@dimen/_28sdp"
             android:background="@drawable/grey_background_edittext"
             android:ems="10"
-<<<<<<< HEAD
-
             android:hint="Enter your phone"
             android:inputType="phone"
-            android:padding="@dimen/_10sdp"
+            android:maxLength="100"
+            android:maxLines="1"
+            android:paddingStart="@dimen/_15sdp"
             android:textColor="#858585"
-            android:textSize="@dimen/_16sdp"
+            android:textSize="@dimen/_15sdp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imageView2" />
+            app:layout_constraintTop_toBottomOf="@+id/et_email" />
+
 
         <EditText
             android:id="@+id/et_email"
-=======
-            android:hint="Enter your name"
-            android:inputType="textPersonName"
-            android:padding="@dimen/_10sdp"
-            android:textColor="#858585"
-            android:textSize="@dimen/_16sdp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imageView2" />
-
-        <EditText
-            android:id="@+id/editText2"
             android:layout_width="match_parent"
             android:layout_height="@dimen/_40sdp"
             android:layout_marginStart="@dimen/_28sdp"
-            android:layout_marginTop="@dimen/_20sdp"
+            android:layout_marginTop="@dimen/_10sdp"
             android:layout_marginEnd="@dimen/_28sdp"
             android:background="@drawable/grey_background_edittext"
             android:ems="10"
-            android:hint="Enter your email"
-            android:inputType="textPersonName"
-            android:padding="@dimen/_10sdp"
-            android:textColor="#858585"
-            android:textSize="@dimen/_16sdp"
-            app:layout_constraintTop_toBottomOf="@+id/editText1" />
-
-        <EditText
-            android:id="@+id/editText3"
->>>>>>> 590da5777b5ef5d9c160aa5fed2f6c9187b636af
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/_40sdp"
-            android:layout_marginStart="@dimen/_28sdp"
-            android:layout_marginTop="@dimen/_20sdp"
-            android:layout_marginEnd="@dimen/_28sdp"
-            android:background="@drawable/grey_background_edittext"
-            android:ems="10"
-<<<<<<< HEAD
             android:hint="Enter your email"
             android:inputType="textEmailAddress"
-            android:padding="@dimen/_10sdp"
+            android:maxLength="100"
+            android:maxLines="1"
+            android:paddingStart="@dimen/_15sdp"
             android:textColor="#858585"
-            android:textSize="@dimen/_16sdp"
-            app:layout_constraintTop_toBottomOf="@+id/et_phone" />
+            android:textSize="@dimen/_15sdp"
+            app:layout_constraintTop_toBottomOf="@+id/et_name" />
 
         <EditText
             android:id="@+id/et_password"
-=======
-            android:hint="Enter your password"
-            android:inputType="textPassword"
-            android:padding="@dimen/_10sdp"
-            android:textColor="#858585"
-            android:textSize="@dimen/_16sdp"
-            app:layout_constraintTop_toBottomOf="@+id/editText2" />
-
-        <EditText
-            android:id="@+id/editText4"
->>>>>>> 590da5777b5ef5d9c160aa5fed2f6c9187b636af
             android:layout_width="match_parent"
             android:layout_height="@dimen/_40sdp"
             android:layout_marginStart="@dimen/_28sdp"
-            android:layout_marginTop="@dimen/_20sdp"
+            android:layout_marginTop="@dimen/_10sdp"
             android:layout_marginEnd="@dimen/_28sdp"
             android:background="@drawable/grey_background_edittext"
             android:ems="10"
-<<<<<<< HEAD
             android:hint="Enter your password"
 
             android:inputType="textPassword"
-            android:padding="@dimen/_10sdp"
+            android:maxLength="100"
+            android:maxLines="1"
+            android:paddingStart="@dimen/_15sdp"
             android:textColor="#858585"
-            android:textSize="@dimen/_16sdp"
-            app:layout_constraintTop_toBottomOf="@+id/et_email" />
+            android:textSize="@dimen/_15sdp"
+            app:layout_constraintTop_toBottomOf="@+id/et_phone" />
 
         <EditText
             android:id="@+id/et_password1"
             android:layout_width="match_parent"
             android:layout_height="@dimen/_40sdp"
             android:layout_marginStart="@dimen/_28sdp"
-            android:layout_marginTop="@dimen/_20sdp"
+            android:layout_marginTop="@dimen/_10sdp"
             android:layout_marginEnd="@dimen/_28sdp"
             android:background="@drawable/grey_background_edittext"
             android:ems="10"
             android:hint="Confirm password"
             android:inputType="textPassword"
-            android:padding="@dimen/_10sdp"
+            android:maxLength="100"
+            android:maxLines="1"
+            android:paddingStart="@dimen/_15sdp"
             android:textColor="#858585"
-            android:textSize="@dimen/_16sdp"
+            android:textSize="@dimen/_15sdp"
             app:layout_constraintTop_toBottomOf="@+id/et_password" />
 
-=======
-            android:hint="Confirm password"
-            android:inputType="textPassword"
-            android:padding="@dimen/_10sdp"
-            android:textColor="#858585"
-            android:textSize="@dimen/_16sdp"
-            app:layout_constraintTop_toBottomOf="@+id/editText3" />
-
->>>>>>> 590da5777b5ef5d9c160aa5fed2f6c9187b636af
         <TextView
-            android:id="@+id/textView3"
+            android:id="@+id/redirect_login"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/_12sdp"
@@ -172,11 +138,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/button" />
 
-<<<<<<< HEAD
         <TextView
-=======
-        <Button
->>>>>>> 590da5777b5ef5d9c160aa5fed2f6c9187b636af
             android:id="@+id/button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -184,24 +146,16 @@
             android:layout_marginTop="@dimen/_12sdp"
             android:layout_marginEnd="@dimen/_40sdp"
             android:background="@drawable/startbutton"
-<<<<<<< HEAD
+
+            android:gravity="center"
             android:padding="@dimen/_7sdp"
             android:text="Sign Up"
-            android:gravity="center"
-            android:textStyle="bold"
-            android:textSize="@dimen/_20sdp"
             android:textColor="@color/white"
+            android:textSize="@dimen/_20sdp"
+            android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/et_password1" />
-=======
-            android:padding="@dimen/_12sdp"
-            android:text="Sign Up"
-            android:textColor="@color/white"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/editText4" />
->>>>>>> 590da5777b5ef5d9c160aa5fed2f6c9187b636af
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

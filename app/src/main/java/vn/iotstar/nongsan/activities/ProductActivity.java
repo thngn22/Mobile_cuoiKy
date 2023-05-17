@@ -12,7 +12,6 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.bumptech.glide.Glide;
 
-import java.lang.reflect.Type;
 import java.util.List;
 
 import io.paperdb.Paper;
@@ -20,11 +19,11 @@ import vn.iotstar.nongsan.R;
 import vn.iotstar.nongsan.databinding.ActivityProductBinding;
 import vn.iotstar.nongsan.models.Cart;
 import vn.iotstar.nongsan.models.ProductDetail;
-import vn.iotstar.nongsan.models.viewModels.ProductDetailViewModel;
+import vn.iotstar.nongsan.models.viewModels.ProductViewModel;
 import vn.iotstar.nongsan.utils.UtilsCart;
 
 public class ProductActivity extends AppCompatActivity {
-    ProductDetailViewModel viewModel;
+    ProductViewModel viewModel;
     ActivityProductBinding binding;
     ProductDetail productDetail;
     int amount = 1;
@@ -36,7 +35,7 @@ public class ProductActivity extends AppCompatActivity {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_product);
         Paper.init(this);
         int id = getIntent().getIntExtra("id", 0);
-        getData(id);
+        getData();
         onClickListener();
         showData(id);
     }
@@ -59,9 +58,9 @@ public class ProductActivity extends AppCompatActivity {
         }
     }
 
-    private void getData(int id) {
-        viewModel = new ViewModelProvider(this).get(ProductDetailViewModel.class);
-        viewModel.productDetailModelMutableLiveData(id).observe(this, productDetailModel -> {
+    private void getData() {
+        viewModel = new ViewModelProvider(this).get(ProductViewModel.class);
+        viewModel.productDetailModelMutableLiveData().observe(this, productDetailModel -> {
             if (productDetailModel.isSuccess()) {
                 productDetail = productDetailModel.getResult().get(0);
                 binding.txtNameFood.setText(productDetail.getMeal());

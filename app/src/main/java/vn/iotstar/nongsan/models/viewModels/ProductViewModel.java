@@ -6,13 +6,13 @@ import androidx.lifecycle.ViewModel;
 import vn.iotstar.nongsan.models.ProductDetailModel;
 import vn.iotstar.nongsan.repository.ProductDetailRepository;
 
-public class ProductDetailViewModel extends ViewModel {
+public class ProductViewModel extends ViewModel {
     private ProductDetailRepository productDetailRepository;
 
-    public ProductDetailViewModel() {
+    public ProductViewModel() {
         productDetailRepository = new ProductDetailRepository();
     }
-    public MutableLiveData<ProductDetailModel> productDetailModelMutableLiveData(int id){
-        return productDetailRepository.getProductDetailModel(id);
+    public MutableLiveData<ProductDetailModel> productDetailModelMutableLiveData(){
+        return productDetailRepository.getProductDetailModel();
     }
 }
