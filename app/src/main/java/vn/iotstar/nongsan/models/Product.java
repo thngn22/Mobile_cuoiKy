@@ -1,14 +1,18 @@
 package vn.iotstar.nongsan.models;
 
+import java.util.HashMap;
+
 public class Product {
-    private String id, name, thumb, description, category, slug, unit, review;
+    private String id, name, thumb, description, category, slug, unit;
+
+    private HashMap<String, Object> review;
     private int quantity, price, soldCount;
     private double star;
 
     public Product() {
     }
 
-    public Product(String id, String name, String thumb, String description, String category, String slug, String unit, String review, int quantity, int price, int soldCount, double star) {
+    public Product(String id, String name, String thumb, String description, String category, String slug, String unit, HashMap<String, Object> review, int quantity, int price, int soldCount, double star) {
         this.id = id;
         this.name = name;
         this.thumb = thumb;
@@ -79,11 +83,11 @@ public class Product {
         this.unit = unit;
     }
 
-    public String getReview() {
+    public HashMap<String, Object> getReview() {
         return review;
     }
 
-    public void setReview(String review) {
+    public void setReview(HashMap<String, Object> review) {
         this.review = review;
     }
 

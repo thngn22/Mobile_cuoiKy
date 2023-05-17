@@ -22,6 +22,8 @@ import vn.iotstar.nongsan.listener.HomeEventClickListener;
 import vn.iotstar.nongsan.models.Category;
 import vn.iotstar.nongsan.models.Product;
 import vn.iotstar.nongsan.models.viewModels.HomeViewModel;
+import vn.iotstar.nongsan.utils.UtilsTokens;
+import vn.iotstar.nongsan.utils.UtilsUser;
 
 public class HomeActivity extends AppCompatActivity implements HomeEventClickListener {
     HomeViewModel homeViewModel;
@@ -46,6 +48,8 @@ public class HomeActivity extends AppCompatActivity implements HomeEventClickLis
     }
 
     private void initData() {
+
+
         homeViewModel = new ViewModelProvider(this).get(HomeViewModel.class);
         homeViewModel.categoryModelMutableLiveData().observe(this, categoryModel -> {
             if (categoryModel.getStatus() == 200) {
@@ -55,7 +59,7 @@ public class HomeActivity extends AppCompatActivity implements HomeEventClickLis
                 Log.d("logg", (String.valueOf(adapter.getItemCount())));
             }
         });
-        homeViewModel.productModelMutableLiveData("7dfcd429-3d66-4d0a-914f-1a02158a4935").observe(this, productModel -> {
+        homeViewModel.productModelMutableLiveData().observe(this, productModel -> {
             if (productModel.getStatus() == 200) {
                 PopularAdapter adapter = new PopularAdapter(productModel.getMetadata(), this);
                 binding.rcPopular.setAdapter(adapter);
@@ -106,7 +110,7 @@ public class HomeActivity extends AppCompatActivity implements HomeEventClickLis
     @Override
     public void onPopularClick(Product product) {
         Intent intent = new Intent(getApplicationContext(), ProductActivity.class);
-        intent.putExtra("idd", product.getId());
+        intent.putExtra("id", product.getId());
         startActivity(intent);
     }
 

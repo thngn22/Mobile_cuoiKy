@@ -35,7 +35,7 @@ public class ProductActivity extends AppCompatActivity {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_product);
         Paper.init(this);
         int id = getIntent().getIntExtra("id", 0);
-        //getData();
+        getData();
         onClickListener();
         showData(id);
     }
@@ -58,7 +58,7 @@ public class ProductActivity extends AppCompatActivity {
         }
     }
 
-//    private void getData() {
+    private void getData() {
 //        String id =  getIntent().getStringExtra("id");
 //        viewModel = new ViewModelProvider(this).get(ProductViewModel.class);
 //        viewModel.productModelMutableLiveData(id).observe(this, productDetailModel -> {
@@ -75,7 +75,7 @@ public class ProductActivity extends AppCompatActivity {
 //                        .into(binding.imageProduct);
 //            }
 //        });
-//    }
+    }
 
     private void onClickListener() {
         binding.addBtnProduct.setOnClickListener(new View.OnClickListener() {

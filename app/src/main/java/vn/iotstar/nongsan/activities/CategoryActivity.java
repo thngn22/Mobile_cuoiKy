@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.Toast;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -25,6 +26,8 @@ import vn.iotstar.nongsan.databinding.ActivityProductBinding;
 import vn.iotstar.nongsan.listener.CategoryEventClickListener;
 import vn.iotstar.nongsan.models.Product;
 import vn.iotstar.nongsan.models.viewModels.CategoryViewModel;
+import vn.iotstar.nongsan.utils.UtilsTokens;
+import vn.iotstar.nongsan.utils.UtilsUser;
 
 public class CategoryActivity extends AppCompatActivity implements CategoryEventClickListener {
     ActivityCategoryBinding binding;
@@ -77,14 +80,24 @@ public class CategoryActivity extends AppCompatActivity implements CategoryEvent
 
         Log.d("logg", cateName);
 
-        String idCate = getIntent().getStringExtra("idCate");
-        String categoryName = getIntent().getStringExtra("cateName");
+        String categoryId = getIntent().getStringExtra("idCate");
+//        Log.d("logg", categoryId);
+//        Log.d("logg", UtilsTokens.tokens.getAccessToken());
+//        Log.d("logg", UtilsTokens.tokens.getRefreshToken());
+//        Log.d("logg", UtilsUser.user.getId());
+
         viewModel = new ViewModelProvider(this).get(CategoryViewModel.class);
-        viewModel.productModelMutableLiveData(idCate).observe(this, productModel -> {
+
+        viewModel.productModelMutableLiveData(categoryId, UtilsTokens.tokens.getAccessToken(), UtilsUser.user.getId(), UtilsTokens.tokens.getRefreshToken()).observe(this, productModel -> {
             if (productModel.getStatus() == 200) {
                 ProductAdapter adapter = new ProductAdapter(productModel.getMetadata(), this);
-                binding.tvCategoryName.setText(cateName + ": " + productModel.getMetadata().size() + " món");
+                binding.tvCategoryName.setText(cateName + ": " + productModel.getMetadata().size() + " sản phẩm");
                 binding.rcCategoryMain.setAdapter(adapter);
+                Log.d("logg", (String.valueOf(adapter.getItemCount())));
+            }
+            else{
+                Toast.makeText(this, productModel.getMessage(), Toast.LENGTH_SHORT).show();
+                Log.d("logg", productModel.getMessage());
             }
         });
 
