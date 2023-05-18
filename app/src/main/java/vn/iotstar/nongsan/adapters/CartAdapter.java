@@ -40,10 +40,10 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.MyViewHolder> 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
         Cart cart = cartList.get(position);
-        holder.binding.txtNameProduct.setText(cart.getProductDetail().getMeal() + "");
-        holder.binding.txtPrice.setText(cart.getProductDetail().getPrice() + "đ");
+        holder.binding.txtNameProduct.setText(cart.getName() + "");
+        holder.binding.txtPrice.setText(cart.getPrice() + "đ");
         Glide.with(context)
-                .load(cart.getProductDetail().getStrMealThumb())
+                .load(cart.getThumb())
                 .placeholder(R.drawable.rricardo)
                 .error(android.R.drawable.stat_notify_error)
                 .into(holder.binding.imageCart);
@@ -63,21 +63,21 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.MyViewHolder> 
                 listener.change();
             }
         });
-        holder.binding.txtAmount.setText(String.valueOf(cart.getAmount()));
-        holder.binding.txtPriceSum.setText(cart.getAmount() * cart.getProductDetail().getPrice() + "đ");
+        holder.binding.txtAmount.setText(String.valueOf(cart.getQuantity()));
+        holder.binding.txtPriceSum.setText(cart.getQuantity() * cart.getPrice() + "đ");
     }
 
     private void subCart(int adapterPosition) {
-        if (UtilsCart.listCart.get(adapterPosition).getAmount() == 1) {
+        if (UtilsCart.listCart.get(adapterPosition).getQuantity() == 1) {
             UtilsCart.listCart.remove(adapterPosition);
         } else {
-            UtilsCart.listCart.get(adapterPosition).setAmount(UtilsCart.listCart.get(adapterPosition).getAmount() - 1);
+            UtilsCart.listCart.get(adapterPosition).setQuantity(UtilsCart.listCart.get(adapterPosition).getQuantity() - 1);
         }
         Paper.book().write("cartList", UtilsCart.listCart);
     }
 
     private void addCart(int position) {
-        UtilsCart.listCart.get(position).setAmount(UtilsCart.listCart.get(position).getAmount() + 1);
+        UtilsCart.listCart.get(position).setQuantity(UtilsCart.listCart.get(position).getQuantity() + 1);
         Paper.book().write("cartList", UtilsCart.listCart);
     }
 

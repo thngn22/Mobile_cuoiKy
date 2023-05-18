@@ -1,16 +1,18 @@
 package vn.iotstar.nongsan.models;
 
+import com.google.gson.annotations.SerializedName;
+
 import java.util.List;
 
-public class ProductDetailModel {
+public class CartModel {
     private String message;
-    private int status;
-    private ProductDetail metadata;
+    int status;
+    private List<Cart> metadata;
 
-    public ProductDetailModel() {
+    public CartModel() {
     }
 
-    public ProductDetailModel(String message, int status, ProductDetail metadata) {
+    public CartModel(String message, int status, List<Cart> metadata) {
         this.message = message;
         this.status = status;
         this.metadata = metadata;
@@ -32,11 +34,11 @@ public class ProductDetailModel {
         this.status = status;
     }
 
-    public ProductDetail getMetadata() {
+    public List<Cart> getMetadata() {
         return metadata;
     }
 
-    public void setMetadata(ProductDetail metadata) {
+    public void setMetadata(List<Cart> metadata) {
         this.metadata = metadata;
     }
 }

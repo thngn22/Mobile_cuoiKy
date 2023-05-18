@@ -14,14 +14,19 @@ import android.view.KeyEvent;
 import android.view.View;
 
 //import io.paperdb.Paper;
+import java.util.ArrayList;
+import java.util.List;
+
 import vn.iotstar.nongsan.R;
 import vn.iotstar.nongsan.adapters.CategoryAdapter;
 import vn.iotstar.nongsan.adapters.PopularAdapter;
 import vn.iotstar.nongsan.databinding.ActivityHomeBinding;
 import vn.iotstar.nongsan.listener.HomeEventClickListener;
+import vn.iotstar.nongsan.models.Cart;
 import vn.iotstar.nongsan.models.Category;
 import vn.iotstar.nongsan.models.Product;
 import vn.iotstar.nongsan.models.viewModels.HomeViewModel;
+import vn.iotstar.nongsan.utils.UtilsCart;
 import vn.iotstar.nongsan.utils.UtilsTokens;
 import vn.iotstar.nongsan.utils.UtilsUser;
 
@@ -48,8 +53,6 @@ public class HomeActivity extends AppCompatActivity implements HomeEventClickLis
     }
 
     private void initData() {
-
-
         homeViewModel = new ViewModelProvider(this).get(HomeViewModel.class);
         homeViewModel.categoryModelMutableLiveData().observe(this, categoryModel -> {
             if (categoryModel.getStatus() == 200) {
@@ -103,27 +106,15 @@ public class HomeActivity extends AppCompatActivity implements HomeEventClickLis
     @Override
     public void onCategoryClick(Category category) {
         Intent intent = new Intent(getApplicationContext(), CategoryActivity.class);
-        intent.putExtra("idCate", category.getId());
+        intent.putExtra("categoryId", category.getId());
         intent.putExtra("categoryName", category.getName());
         startActivity(intent);
     }
 
     @Override
     public void onPopularClick(Product product) {
-        Intent intent = new Intent(getApplicationContext(), ProductActivity.class);
+        Intent intent = new Intent(HomeActivity.this, ProductActivity.class);
         intent.putExtra("id", product.getId());
-        intent.putExtra("name", product.getName());
-        intent.putExtra("thumb", product.getThumb());
-        intent.putExtra("quantity", product.getQuantity());
-        intent.putExtra("price", product.getPrice());
-        intent.putExtra("description", product.getDescription());
-        intent.putExtra("category", product.getCategory());
-        intent.putExtra("slug", product.getSlug());
-        intent.putExtra("unit", product.getUnit());
-        intent.putExtra("soldCount", product.getSoldCount());
-        intent.putExtra("star", product.getStar());
-        intent.putExtra("review", product.getName());
-
         startActivity(intent);
     }
 

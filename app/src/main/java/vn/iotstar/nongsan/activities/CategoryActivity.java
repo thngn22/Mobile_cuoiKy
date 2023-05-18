@@ -84,7 +84,7 @@ public class CategoryActivity extends AppCompatActivity implements CategoryEvent
 
         Log.d("logg", cateName);
 
-        String categoryId = getIntent().getStringExtra("idCate");
+        String categoryId = getIntent().getStringExtra("categoryId");
 //        Log.d("logg", categoryId);
 //        Log.d("logg", UtilsTokens.tokens.getAccessToken());
 //        Log.d("logg", UtilsTokens.tokens.getRefreshToken());
@@ -97,6 +97,7 @@ public class CategoryActivity extends AppCompatActivity implements CategoryEvent
 
         viewModel.productModelMutableLiveData(categoryId, accessToken, clientId, refreshToken).observe(this, productModel -> {
             if (productModel.getStatus() == 200) {
+                Log.d("logg", productModel.getMetadata().toString());
                 ProductAdapter adapter = new ProductAdapter(productModel.getMetadata(), this);
                 binding.tvCategoryName.setText(cateName + ": " + productModel.getMetadata().size() + " sản phẩm");
                 binding.rcCategoryMain.setAdapter(adapter);
@@ -119,8 +120,8 @@ public class CategoryActivity extends AppCompatActivity implements CategoryEvent
 
     @Override
     public void onProductClick(Product product) {
-//        Intent intent = new Intent(getApplicationContext(), ProductActivity.class);
-//        intent.putExtra("id", product.getId());
-//        startActivity(intent);
+        Intent intent = new Intent(getApplicationContext(), ProductActivity.class);
+        intent.putExtra("id", product.getId());
+        startActivity(intent);
     }
 }

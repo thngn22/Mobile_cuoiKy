@@ -15,7 +15,7 @@ public class RetrofitInstance {
     public static Retrofit getRetrofit(){
         if (retrofit == null){
             retrofit = new Retrofit.Builder()
-                    .baseUrl("http://172.20.10.4:4040/v1/api/") //192.168.1.3 https://foodapp.free.beeceptor.com/
+                    .baseUrl(Constant.ROOT_URL) //192.168.1.3 https://foodapp.free.beeceptor.com/
                     .addConverterFactory(GsonConverterFactory.create(gson))
                     .build();
         }

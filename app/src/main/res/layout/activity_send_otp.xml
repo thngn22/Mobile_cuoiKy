@@ -3,7 +3,7 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".activities.ForgetPasswordActivity">
+    tools:context=".activities.SendOTP">
 
     <data>
 
@@ -36,7 +36,7 @@
             app:layout_constraintBottom_toBottomOf="@+id/imageView7" />
 
         <TextView
-            android:id="@+id/tv_fgt"
+            android:id="@+id/tv_OTP"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
 
@@ -44,13 +44,13 @@
             android:gravity="center"
             android:paddingTop="@dimen/_45sdp"
 
-            android:text="Enter your email that we will send OTP!"
+            android:text="Please check your mail for OTP!"
             android:textColor="#000000"
             android:textSize="@dimen/_13sdp"
 
-            app:layout_constraintBottom_toTopOf="@+id/et_email_login1"
+            app:layout_constraintBottom_toTopOf="@+id/et_OTP"
             app:layout_constraintEnd_toEndOf="@id/btn_send"
-            app:layout_constraintStart_toStartOf="@+id/et_email_login1"
+            app:layout_constraintStart_toStartOf="@+id/et_OTP"
             app:layout_constraintTop_toBottomOf="@+id/imageView7"
 
             tools:ignore="MissingConstraints">
@@ -58,7 +58,7 @@
         </TextView>
 
         <EditText
-            android:id="@+id/et_email_login1"
+            android:id="@+id/et_OTP"
             android:layout_width="match_parent"
             android:layout_height="@dimen/_40sdp"
             android:layout_marginStart="@dimen/_28sdp"
@@ -67,7 +67,7 @@
             android:layout_marginBottom="@dimen/_5sdp"
             android:background="@drawable/grey_background_edittext"
             android:ems="10"
-            android:hint="Enter your email"
+            android:hint="Enter your OTP"
             android:inputType="textEmailAddress"
             android:padding="@dimen/_10sdp"
             android:textColor="#858585"
@@ -75,7 +75,7 @@
             app:layout_constraintBottom_toTopOf="@+id/btn_send"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_fgt" />
+            app:layout_constraintTop_toBottomOf="@+id/tv_OTP" />
 
 
         <TextView
@@ -84,20 +84,21 @@
             android:layout_height="@dimen/_50sdp"
             android:layout_marginStart="@dimen/_40sdp"
             android:layout_marginTop="@dimen/_15sdp"
+
             android:layout_marginEnd="@dimen/_40sdp"
             android:background="@drawable/startbutton"
             android:gravity="center"
-            android:text="Send"
+            android:text="CHECK"
             android:textColor="@color/white"
             android:textSize="@dimen/_25sdp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/et_email_login1"
+            app:layout_constraintTop_toBottomOf="@+id/et_OTP"
             tools:ignore="MissingConstraints"
             tools:layout_editor_absoluteY="477dp" />
 
         <TextView
-            android:id="@+id/backtologin"
+            android:id="@+id/backtologin2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/_20sdp"

@@ -9,6 +9,7 @@ import android.widget.LinearLayout;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -21,9 +22,14 @@ import vn.iotstar.nongsan.adapters.CategoryAdapter;
 import vn.iotstar.nongsan.databinding.ActivityCartBinding;
 import vn.iotstar.nongsan.listener.ChangeNumberListener;
 import vn.iotstar.nongsan.models.Cart;
+import vn.iotstar.nongsan.models.CartModel;
+import vn.iotstar.nongsan.models.ProductDetail;
+import vn.iotstar.nongsan.models.viewModels.CartViewModel;
+import vn.iotstar.nongsan.models.viewModels.ProductViewModel;
 import vn.iotstar.nongsan.utils.UtilsCart;
 
 public class CartActivity extends AppCompatActivity {
+    CartViewModel viewModel;
     ActivityCartBinding binding;
 
     @Override
@@ -47,6 +53,8 @@ public class CartActivity extends AppCompatActivity {
     private void initData() {
         List<Cart> cartList = Paper.book().read("cartList");
         UtilsCart.listCart = cartList;
+        Log.d("logg", String.valueOf(UtilsCart.listCart.size()));
+
         CartAdapter adapter = new CartAdapter(this, UtilsCart.listCart, new ChangeNumberListener() {
             @Override
             public void change() {
@@ -54,6 +62,8 @@ public class CartActivity extends AppCompatActivity {
             }
         });
         binding.rcCart.setAdapter(adapter);
+
+
     }
 
     private void totalPrice() {
@@ -62,8 +72,8 @@ public class CartActivity extends AppCompatActivity {
         List<Cart> list = UtilsCart.listCart;
         if (list != null) {
             for (int i = 0; i < list.size(); i++) {
-                item_count = item_count + list.get(i).getAmount();
-                price = price + list.get(i).getAmount() * list.get(i).getProductDetail().getPrice();
+                item_count = item_count + list.get(i).getQuantity();
+                price = price + list.get(i).getQuantity() * list.get(i).getPrice();
             }
         }
 

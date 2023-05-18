@@ -1,6 +1,7 @@
 package vn.iotstar.nongsan.activities;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Toast;
@@ -12,6 +13,8 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.bumptech.glide.Glide;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import io.paperdb.Paper;
@@ -20,29 +23,35 @@ import vn.iotstar.nongsan.databinding.ActivityProductBinding;
 import vn.iotstar.nongsan.models.Cart;
 import vn.iotstar.nongsan.models.Product;
 import vn.iotstar.nongsan.models.ProductDetail;
+import vn.iotstar.nongsan.models.ProductDetailModel;
 import vn.iotstar.nongsan.models.viewModels.ProductViewModel;
 import vn.iotstar.nongsan.utils.UtilsCart;
+import vn.iotstar.nongsan.utils.UtilsTokens;
+import vn.iotstar.nongsan.utils.UtilsUser;
 
 public class ProductActivity extends AppCompatActivity {
     ProductViewModel viewModel;
     ActivityProductBinding binding;
-    Product product;
+    ProductDetail product;
     int amount = 1;
-    double price = 0;
+    int price = 1;
+    String id, name, thumb, description;
+    int quantity;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_product);
         Paper.init(this);
-        int id = getIntent().getIntExtra("id", 0);
-        getData();
+        String id = getIntent().getStringExtra("id");
+        Log.d("logg", id);
+        getData(id);
         onClickListener();
         showData(id);
     }
 
-    private void showData(int id) {
-        if (Paper.book().read("cartList") != null){
+    private void showData(String id) {
+        if (Paper.book().read("cartList") != null) {
             List<Cart> cartList = Paper.book().read("cartList");
             UtilsCart.listCart = cartList;
         }
@@ -50,8 +59,8 @@ public class ProductActivity extends AppCompatActivity {
 
         if (UtilsCart.listCart.size() > 0) {
             for (int i = 0; i < UtilsCart.listCart.size(); i++) {
-                if (UtilsCart.listCart.get(i).getProductDetail().getId() == id) {
-                    binding.txtProductAmount.setText(UtilsCart.listCart.get(i).getAmount() + "");
+                if (UtilsCart.listCart.get(i).getId() == id) {
+                    binding.txtProductAmount.setText(UtilsCart.listCart.get(i).getQuantity() + "");
                 }
             }
         } else {
@@ -59,20 +68,33 @@ public class ProductActivity extends AppCompatActivity {
         }
     }
 
-    private void getData() {
-//        String id =  getIntent().getStringExtra("id");
-//        viewModel = new ViewModelProvider(this).get(ProductViewModel.class);
-//        product
-//        product.getCategory()
-//                binding.txtNameFood.setText(productDetail.getMeal());
-//                binding.txtDesc.setText(productDetail.getInstructions());
-//                binding.txtPrice.setText(productDetail.getPrice() + "đ");
-//                price = productDetail.getPrice();
-//                Glide.with(this)
-//                        .load(productDetail.getStrMealThumb())
-//                        .placeholder(R.drawable.rricardo)
-//                        .error(android.R.drawable.stat_notify_error)
-//                        .into(binding.imageProduct);
+    private void getData(String id) {
+
+        viewModel = new ViewModelProvider(this).get(ProductViewModel.class);
+        viewModel.productDetailModelMutableLiveData(id).observe(this, productDetailModel -> {
+            Log.d("logg", productDetailModel.getMetadata().toString());
+            ProductDetail productDetail = productDetailModel.getMetadata();
+            Log.d("logg", productDetail.getId());
+            binding.txtNameFood.setText(productDetail.getName());
+            binding.txtDesc.setText(productDetail.getDescription());
+            binding.txtPrice.setText(productDetail.getPrice() + "đ");
+            price = Integer.parseInt(binding.txtPrice.getText().toString().split("đ")[0]);
+
+            this.id = productDetail.getId();
+            name = productDetail.getName();
+            thumb = productDetail.getThumb();
+            description = productDetail.getDescription();
+            quantity = productDetail.getQuantity();
+            price = productDetail.getPrice();
+
+            //price = binding.txtPrice.getText();
+            Glide.with(this)
+                    .load(productDetail.getThumb())
+                    .placeholder(R.drawable.rricardo)
+                    .error(android.R.drawable.stat_notify_error)
+                    .into(binding.imageProduct);
+
+        });
 
     }
 
@@ -122,32 +144,37 @@ public class ProductActivity extends AppCompatActivity {
         binding.btnAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                addToCart(amount);
+                addToCart();
+
             }
         });
     }
 
-    private void addToCart(int amount) {
-        boolean checkExist = false;
-        int index = 0;
-        if (UtilsCart.listCart.size() > 0) {
-            for (int i = 0; i < UtilsCart.listCart.size(); i++) {
-//                if (UtilsCart.listCart.get(i).getProductDetail().getId() == productDetail.getId()) {
-//                    checkExist = true;
-//                    index = i;
-//                    break;
-//                }
+    private void addToCart() {
+
+        viewModel = new ViewModelProvider(this).get(ProductViewModel.class);
+        String accessToken =  UtilsTokens.tokens.getAccessToken();
+        String clientId = UtilsUser.user.getId();
+        String refreshToken = UtilsTokens.getTokens().getRefreshToken();
+        Log.d(accessToken, "accessToken: ");
+        Log.d(clientId, "clientId: ");
+        Log.d(refreshToken, "refreshToken: ");
+        viewModel.cartModelMutableLiveData(id, name, thumb, description, quantity, price, accessToken, clientId, refreshToken).observe(this, cartModel -> {
+            if (cartModel.getStatus() == 200) {
+                Log.d("logg", "có giỏ hàng" + cartModel.getMetadata().size());
+
+                List<Cart> cartList = cartModel.getMetadata();
+                UtilsCart.listCart = cartList;
+                Toast.makeText(getApplicationContext(), "Added to your Cart", Toast.LENGTH_SHORT).show();
+            } else {
+                Log.d("logg", "không có giỏ hàng");
+                Toast.makeText(getApplicationContext(), "Chưa add dc cart", Toast.LENGTH_SHORT).show();
             }
-        }
-        if (checkExist) {
-            UtilsCart.listCart.get(index).setAmount(amount);
-        } else {
-            Cart cart = new Cart();
-         //   cart.setProductDetail(productDetail);
-            cart.setAmount(amount);
-            UtilsCart.listCart.add(cart);
-        }
-        Toast.makeText(getApplicationContext(), "Added to your Cart", Toast.LENGTH_SHORT).show();
+        });
+
+
         Paper.book().write("cartList", UtilsCart.listCart);
+        finish();
+
     }
 }

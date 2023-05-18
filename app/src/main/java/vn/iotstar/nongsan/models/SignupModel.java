@@ -12,7 +12,7 @@ public class SignupModel {
 
     private String message;
     int status;
-    @SerializedName("shop")
+    @SerializedName("user")
     private User metadata;
 
     public SignupModel() {

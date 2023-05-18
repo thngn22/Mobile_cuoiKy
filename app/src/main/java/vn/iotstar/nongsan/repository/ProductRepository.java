@@ -29,7 +29,7 @@ public class ProductRepository {
                     data.setValue(response.body());
                     Log.d("logg", "co du lieu product");
                 } else {
-                    Log.d("logg", "dell");
+                    Log.d("logg", "dell co du lieu tu product");
                 }
             }
 
@@ -89,4 +89,5 @@ public class ProductRepository {
         });
         return data;
     }
+
 }

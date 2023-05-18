@@ -1,30 +1,78 @@
 package vn.iotstar.nongsan.models;
 
 public class Cart {
-    private ProductDetail productDetail;
-    int amount;
-
-    public Cart(ProductDetail productDetail, int amount) {
-        this.productDetail = productDetail;
-        this.amount = amount;
-    }
+    private String id, cartId, name, thumb, productId;
+    private int quantity, price;
 
     public Cart() {
     }
 
-    public ProductDetail getProductDetail() {
-        return productDetail;
+    public Cart(String id, String cartId, String name, String thumb, String productId, int quantity, int price) {
+        this.id = id;
+        this.cartId = cartId;
+        this.name = name;
+        this.thumb = thumb;
+        this.productId = productId;
+        this.quantity = quantity;
+        this.price = price;
     }
 
-    public void setProductDetail(ProductDetail productDetail) {
-        this.productDetail = productDetail;
+    public String getId() {
+        return id;
     }
 
-    public int getAmount() {
-        return amount;
+    public void setId(String id) {
+        this.id = id;
     }
 
-    public void setAmount(int amount) {
-        this.amount = amount;
+    public String getCartId() {
+        return cartId;
+    }
+
+    public void setCartId(String cartId) {
+        this.cartId = cartId;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getThumb() {
+        return thumb;
+    }
+
+    public void setThumb(String thumb) {
+        this.thumb = thumb;
+    }
+
+    public String getProductId() {
+        return productId;
+    }
+
+    public void setProductId(String productId) {
+        this.productId = productId;
+    }
+
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
+    }
+
+    public int getPrice() {
+        return price;
+    }
+
+    public void setPrice(int price) {
+        this.price = price;
     }
 }
+
+
+

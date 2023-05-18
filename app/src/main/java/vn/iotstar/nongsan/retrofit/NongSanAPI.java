@@ -1,5 +1,7 @@
 package vn.iotstar.nongsan.retrofit;
 
+import androidx.annotation.RawRes;
+
 import java.util.List;
 
 import retrofit2.http.HEAD;
@@ -12,8 +14,10 @@ import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
+import vn.iotstar.nongsan.models.CartModel;
 import vn.iotstar.nongsan.models.CategoryModel;
 import vn.iotstar.nongsan.models.LoginModel;
+import vn.iotstar.nongsan.models.ProductDetail;
 import vn.iotstar.nongsan.models.ProductDetailModel;
 import vn.iotstar.nongsan.models.ProductModel;
 import vn.iotstar.nongsan.models.SignupModel;
@@ -35,14 +39,14 @@ public interface NongSanAPI {
             @Field("phone") String phone
     );
 
-    @POST("auth/login")
+    @POST(Constant.URL_LOGIN)
     @FormUrlEncoded
     Call<LoginModel> getLoginModel(
             @Field("email") String email,
             @Field("password") String password
     );
 
-    @POST(Constant.URL_PRODUCT_BY_CATEGORY + ":{categoryId}/")
+    @POST(Constant.URL_PRODUCT_BY_CATEGORY + "{categoryId}/")
     Call<ProductModel>  getProductByCategoryModel(
             @Path("categoryId") String categoryId,
             @Header("Authorization") String accessToken,
@@ -50,10 +54,44 @@ public interface NongSanAPI {
             @Header("x-rtoken-id") String refreshToken
     );
 
-    @POST("search.php")
+    @GET(Constant.URL_PRODUCT_DETAIL + "{productId}")
+    Call<ProductDetailModel>  getProductDetail(
+            @Path("productId") String productId
+
+    );
+
+    @POST(Constant.URL_SEARCH)
     @FormUrlEncoded
     Call<ProductModel> getProductDetailModelBySearch(
-            @Field("searchName")
+            @Field("search")
             String searchName
     );
+
+
+
+
+    @POST(Constant.URL_ADD_CART)
+    @FormUrlEncoded
+    Call<CartModel> getUpdateAddCart(
+            @Field("id") String id,
+            @Field("name") String name,
+            @Field("thumb") String thumb,
+            @Field("description") String description,
+            @Field("quantity") int quantity,
+            @Field("price") int price,
+            @Header("Authorization") String accessToken,
+            @Header("x-client-id") String clientId,
+            @Header("x-rtoken-id") String refreshToken
+            );
+    @POST(Constant.URL_REMOVE_CART)
+    @FormUrlEncoded
+    Call<CartModel> getRemoveCart(
+            @Field("id") String productId,
+            @Field("name") String productName,
+            @Field("thumb") String productThumb,
+            @Field("description") String productDescription,
+            @Field("quantity") int productQuantity,
+            @Field("price") int productPrice
+    );
+
 }

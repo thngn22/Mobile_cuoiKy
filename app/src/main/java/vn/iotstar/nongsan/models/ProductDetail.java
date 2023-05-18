@@ -1,45 +1,67 @@
 package vn.iotstar.nongsan.models;
 
-public class ProductDetail {
-    private int id;
-    private String meal, area_, category, instructions, strMealThumb;
-    private double price;
+import java.util.HashMap;
 
-    public ProductDetail(int id, String meal, String area_, String category, String instructions, String strMealThumb, double price) {
-        this.id = id;
-        this.meal = meal;
-        this.area_ = area_;
-        this.category = category;
-        this.instructions = instructions;
-        this.strMealThumb = strMealThumb;
-        this.price = price;
-    }
+public class ProductDetail {
+    private String id, name, thumb, description, category, slug, unit, createdAt, updatedAt;
+
+    private HashMap<String, Object> review;
+    private int quantity, price, soldCount;
+    private double star;
+    private boolean isDrafted, isPublished;
 
     public ProductDetail() {
     }
 
-    public int getId() {
+    public ProductDetail(String id, String name, String thumb, String description, String category, String slug, String unit, String createdAt, String updatedAt, HashMap<String, Object> review, int quantity, int price, int soldCount, double star, boolean isDrafted, boolean isPublished) {
+        this.id = id;
+        this.name = name;
+        this.thumb = thumb;
+        this.description = description;
+        this.category = category;
+        this.slug = slug;
+        this.unit = unit;
+        this.createdAt = createdAt;
+        this.updatedAt = updatedAt;
+        this.review = review;
+        this.quantity = quantity;
+        this.price = price;
+        this.soldCount = soldCount;
+        this.star = star;
+        this.isDrafted = isDrafted;
+        this.isPublished = isPublished;
+    }
+
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 
-    public String getMeal() {
-        return meal;
+    public String getName() {
+        return name;
     }
 
-    public void setMeal(String meal) {
-        this.meal = meal;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public String getArea_() {
-        return area_;
+    public String getThumb() {
+        return thumb;
     }
 
-    public void setArea_(String area_) {
-        this.area_ = area_;
+    public void setThumb(String thumb) {
+        this.thumb = thumb;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public String getCategory() {
@@ -50,27 +72,91 @@ public class ProductDetail {
         this.category = category;
     }
 
-    public String getInstructions() {
-        return instructions;
+    public String getSlug() {
+        return slug;
     }
 
-    public void setInstructions(String instructions) {
-        this.instructions = instructions;
+    public void setSlug(String slug) {
+        this.slug = slug;
     }
 
-    public String getStrMealThumb() {
-        return strMealThumb;
+    public String getUnit() {
+        return unit;
     }
 
-    public void setStrMealThumb(String strMealThumb) {
-        this.strMealThumb = strMealThumb;
+    public void setUnit(String unit) {
+        this.unit = unit;
     }
 
-    public double getPrice() {
-        return this.meal == null ? 0 : price * 22000;
+    public String getCreatedAt() {
+        return createdAt;
     }
 
-    public void setPrice(double price) {
+    public void setCreatedAt(String createdAt) {
+        this.createdAt = createdAt;
+    }
+
+    public String getUpdatedAt() {
+        return updatedAt;
+    }
+
+    public void setUpdatedAt(String updatedAt) {
+        this.updatedAt = updatedAt;
+    }
+
+    public HashMap<String, Object> getReview() {
+        return review;
+    }
+
+    public void setReview(HashMap<String, Object> review) {
+        this.review = review;
+    }
+
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
+    }
+
+    public int getPrice() {
+        return price;
+    }
+
+    public void setPrice(int price) {
         this.price = price;
+    }
+
+    public int getSoldCount() {
+        return soldCount;
+    }
+
+    public void setSoldCount(int soldCount) {
+        this.soldCount = soldCount;
+    }
+
+    public double getStar() {
+        return star;
+    }
+
+    public void setStar(double star) {
+        this.star = star;
+    }
+
+    public boolean isDrafted() {
+        return isDrafted;
+    }
+
+    public void setDrafted(boolean drafted) {
+        isDrafted = drafted;
+    }
+
+    public boolean isPublished() {
+        return isPublished;
+    }
+
+    public void setPublished(boolean published) {
+        isPublished = published;
     }
 }
