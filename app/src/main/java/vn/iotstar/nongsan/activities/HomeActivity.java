@@ -17,6 +17,7 @@ import android.view.View;
 import java.util.ArrayList;
 import java.util.List;
 
+import io.paperdb.Paper;
 import vn.iotstar.nongsan.R;
 import vn.iotstar.nongsan.adapters.CategoryAdapter;
 import vn.iotstar.nongsan.adapters.PopularAdapter;
@@ -38,7 +39,7 @@ public class HomeActivity extends AppCompatActivity implements HomeEventClickLis
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_home);
-//        Paper.init(this);
+        Paper.init(this);
         initView();
         initData();
 
@@ -69,6 +70,7 @@ public class HomeActivity extends AppCompatActivity implements HomeEventClickLis
                 Log.d("logg", (String.valueOf(adapter.getItemCount())));
             }
         });
+        Paper.book().write("token", UtilsTokens.tokens);
 
     }
 

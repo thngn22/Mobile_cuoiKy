@@ -33,18 +33,6 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
-                <TextView
-                    android:id="@+id/tv"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/_15sdp"
-                    android:layout_marginTop="@dimen/_2sdp"
-                    android:text="Eat and Order"
-                    android:textSize="@dimen/_14ssp"
-                    android:textStyle="bold"
-                    app:layout_constraintStart_toStartOf="@+id/tvhi"
-                    app:layout_constraintTop_toBottomOf="@+id/tvhi" />
-
                 <ImageView
                     android:id="@+id/avt"
                     android:layout_width="@dimen/_40sdp"
@@ -57,25 +45,28 @@
 
                 <EditText
                     android:id="@+id/search"
-                    android:maxLines="1"
-                    android:inputType="text"
-                    android:maxLength="200"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/_15sdp"
-                    android:layout_marginTop="@dimen/_10sdp"
-                    android:layout_marginEnd="@dimen/_15sdp"
                     android:background="@drawable/background_search"
                     android:drawableLeft="@drawable/ic_search"
-                    android:drawablePadding="@dimen/_5sdp"
-                    android:hint="Search"
+                    android:drawablePadding="@dimen/_1sdp"
+                    android:hint="Search your product"
+                    android:inputType="text"
+                    android:maxLength="200"
+                    android:maxLines="1"
+                    android:textSize="@dimen/_10sdp"
                     android:padding="@dimen/_5sdp"
-                    app:layout_constraintTop_toBottomOf="@+id/tv" />
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:layout_marginStart="@dimen/_15sdp"
+                    android:layout_marginEnd="@dimen/_15sdp"
+                    android:layout_marginTop="@dimen/_55sdp"/>
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/lottie_container"
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/_100sdp"
+                    android:layout_height="@dimen/_90sdp"
                     android:layout_marginTop="@dimen/_2sdp"
                     app:layout_constraintHorizontal_weight="2"
                     app:layout_constraintTop_toBottomOf="@id/search"
@@ -90,7 +81,7 @@
                         android:text="Order Now"
                         android:textAlignment="center"
                         android:textColor="@color/white"
-                        android:textSize="@dimen/_15ssp"
+                        android:textSize="@dimen/_10ssp"
                         android:textStyle="bold"
 
 
@@ -129,7 +120,7 @@
                     android:layout_marginTop="@dimen/_2sdp"
                     android:text="Categories"
                     android:textColor="@color/black"
-                    android:textSize="@dimen/_15sdp"
+                    android:textSize="@dimen/_12sdp"
                     android:textStyle="bold"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/lottie_container"
@@ -155,7 +146,7 @@
                     android:layout_marginTop="@dimen/_2sdp"
                     android:text="Popular   "
                     android:textColor="@color/black"
-                    android:textSize="@dimen/_15sdp"
+                    android:textSize="@dimen/_12sdp"
                     android:textStyle="bold"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/rc_category"
@@ -210,7 +201,7 @@
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
-                        android:layout_weight="2"
+                        android:layout_weight="1"
                         android:orientation="vertical">
 
                         <ImageView
@@ -240,7 +231,7 @@
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
-                        android:layout_weight="2"
+                        android:layout_weight="1"
                         android:orientation="vertical">
 
                         <ImageView
@@ -279,7 +270,7 @@
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
-                        android:layout_weight="2"
+                        android:layout_weight="1"
                         android:orientation="vertical">
 
                         <ImageView
@@ -310,7 +301,7 @@
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
-                        android:layout_weight="2"
+                        android:layout_weight="1"
                         android:orientation="vertical">
 
                         <ImageView
@@ -321,7 +312,7 @@
 
                             android:paddingTop="@dimen/_5sdp"
                             android:paddingEnd="@dimen/_10sdp"
-                            android:src="@drawable/ic_setting">
+                            android:src="@drawable/ic_person">
 
                         </ImageView>
 

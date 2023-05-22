@@ -46,8 +46,9 @@ public class ProductActivity extends AppCompatActivity {
         String id = getIntent().getStringExtra("id");
         Log.d("logg", id);
         getData(id);
-        onClickListener();
         showData(id);
+        onClickListener();
+
     }
 
     private void showData(String id) {
@@ -151,30 +152,42 @@ public class ProductActivity extends AppCompatActivity {
     }
 
     private void addToCart() {
+        Paper.book().write("cartList", UtilsCart.listCart);
+        List<Cart> cartList = UtilsCart.listCart;
+        for (int i = 0; i < cartList.size(); i++) {
+            if (cartList.get(i).getProductId() == id) {
+                cartList.add(cartList.get(i));
+                UtilsCart.listCart = cartList;
+                Log.d("logg", "đã lấy dc product có id = " + cartList.get(i).getProductId());
+                Toast.makeText(getApplicationContext(), "Added to your Cart", Toast.LENGTH_SHORT).show();
+                break;
+            }
+            Log.d("logg", "du lieu trong cart gom: " + cartList.get(i).getProductId());
 
+        }
         viewModel = new ViewModelProvider(this).get(ProductViewModel.class);
+
         String accessToken =  UtilsTokens.tokens.getAccessToken();
         String clientId = UtilsUser.user.getId();
-        String refreshToken = UtilsTokens.getTokens().getRefreshToken();
-        Log.d(accessToken, "accessToken: ");
-        Log.d(clientId, "clientId: ");
-        Log.d(refreshToken, "refreshToken: ");
-        viewModel.cartModelMutableLiveData(id, name, thumb, description, quantity, price, accessToken, clientId, refreshToken).observe(this, cartModel -> {
+        String refreshToken = UtilsTokens.tokens.getRefreshToken();
+
+        Log.d("logg", "accessToken:" + accessToken);
+        Log.d("logg", "clientId: " + clientId);
+        Log.d("logg", "refreshToken" + refreshToken);
+
+        viewModel.cartModelMutableLiveData(accessToken, clientId, refreshToken, id, name, thumb, description, quantity, price).observe(this, cartModel -> {
             if (cartModel.getStatus() == 200) {
                 Log.d("logg", "có giỏ hàng" + cartModel.getMetadata().size());
 
-                List<Cart> cartList = cartModel.getMetadata();
-                UtilsCart.listCart = cartList;
+                UtilsCart.listCart = cartModel.getMetadata();
+
                 Toast.makeText(getApplicationContext(), "Added to your Cart", Toast.LENGTH_SHORT).show();
             } else {
                 Log.d("logg", "không có giỏ hàng");
                 Toast.makeText(getApplicationContext(), "Chưa add dc cart", Toast.LENGTH_SHORT).show();
             }
         });
-
-
         Paper.book().write("cartList", UtilsCart.listCart);
-        finish();
 
     }
 }

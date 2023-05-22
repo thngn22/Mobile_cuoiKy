@@ -11,6 +11,7 @@ import androidx.databinding.DataBindingUtil;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.google.gson.Gson;
+import com.google.gson.JsonObject;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -74,29 +75,26 @@ public class LoginActivity extends AppCompatActivity {
         viewModel.loginModelMutableLiveData(email, password).observe(this, loginModel -> {
             if (loginModel.getStatus() == 200) {
                 Toast.makeText(this, loginModel.getMessage(), Toast.LENGTH_SHORT).show();
-                Log.d("logg", String.valueOf(loginModel.getMetadata().size()));
-                HashMap<String, HashMap<String, String>> hashMap = new HashMap<>(loginModel.getMetadata());
+                Log.d("logg", "so luong loginmodel: " +  loginModel.getMetadata());
 
-                for (String key : hashMap.keySet()) {
-                    Log.d("logg", key + " ngoai " + hashMap.get(key).get("id"));
-                    if (key == "user") {
-                        id = hashMap.get(key).get("id");
-                        name = hashMap.get(key).get("name");
-                        email = hashMap.get(key).get("email");
-                        phone = hashMap.get(key).get("phone");
-                        image = hashMap.get(key).get("image");
-
-                    } else {
-                        accessToken = hashMap.get(key).get("accessToken");
-                        refreshToken = hashMap.get(key).get("refreshToken");
-                    }
-                }
-
+                    id = loginModel.getMetadata().get("user").get("id").toString();
+                    name = loginModel.getMetadata().get("user").get("name").toString();
+                    email = loginModel.getMetadata().get("user").get("email").toString();
+                    phone = loginModel.getMetadata().get("user").get("phone").toString();
+                    image = loginModel.getMetadata().get("user").get("image").toString();
+                    accessToken = loginModel.getMetadata().get("tokens").get("accessToken").toString();
+                    refreshToken = loginModel.getMetadata().get("tokens").get("refreshToken").toString();
                 UtilsUser.user = new User(id, name, email, phone, image);
                 UtilsTokens.tokens = new Tokens(accessToken, refreshToken);
 
                 Log.d("logg", "Sign in successfully, welcome back ");
-
+                Log.d("logg", "id user: " + id);
+                Log.d("logg", "name: " + name);
+                Log.d("logg", "email: " + email);
+                Log.d("logg", "phone: " + phone);
+                Log.d("logg", "image: " + image);
+                Log.d("logg", "accessToken: " + accessToken);
+                Log.d("logg", "refreshToken: " + refreshToken);
 
                 Intent intent = new Intent(getApplicationContext(), HomeActivity.class);
                 intent.putExtra("id", id);

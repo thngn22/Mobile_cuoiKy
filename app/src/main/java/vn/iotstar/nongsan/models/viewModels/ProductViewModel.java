@@ -21,8 +21,8 @@ public class ProductViewModel extends ViewModel {
     public MutableLiveData<ProductDetailModel> productDetailModelMutableLiveData(String productId){
         return productDetailRepository.getProductDetailModel(productId);
     }
-    public MutableLiveData<CartModel> cartModelMutableLiveData(String id, String name, String thumb, String description, int quantity, int price, String accessToken, String clientId, String refreshToken){
-        return cartRepository.getUpdateAddCart(id, name, thumb, description, quantity, price, accessToken, clientId, refreshToken);
+    public MutableLiveData<CartModel> cartModelMutableLiveData(String accessToken, String clientId, String refreshToken, String id, String name, String thumb, String description, int quantity, int price){
+        return cartRepository.getUpdateAddCart(accessToken, clientId, refreshToken, id, name, thumb, description, quantity, price);
     }
 
 }

@@ -33,7 +33,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/_5sdp"
-            app:layout_constraintTop_toBottomOf="@+id/txt_MyCart">
+            app:layout_constraintTop_toBottomOf="@+id/txt_MyCart"
+            android:orientation="vertical">
 
         </androidx.recyclerview.widget.RecyclerView>
 

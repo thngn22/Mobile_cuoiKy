@@ -20,23 +20,23 @@ public class CartRepository {
         nongSanAPI = RetrofitInstance.getRetrofit().create(NongSanAPI.class);
     }
 
-    public MutableLiveData<CartModel> getUpdateAddCart(String id, String name, String thumb, String description, int quantity, int price, String accessToken, String clientId, String refreshToken) {
+    public MutableLiveData<CartModel> getUpdateAddCart(String accessToken, String clientId, String refreshToken, String id, String name, String thumb, String description, int quantity, int price) {
         MutableLiveData<CartModel> data = new MutableLiveData<>();
-        nongSanAPI.getUpdateAddCart(id, name, thumb, description, quantity, price, accessToken, clientId, refreshToken).enqueue(new Callback<CartModel>() {
+        nongSanAPI.getUpdateAddCart(accessToken, clientId, refreshToken, id, name, thumb, description, quantity, price).enqueue(new Callback<CartModel>() {
             @Override
             public void onResponse(Call<CartModel> call, Response<CartModel> response) {
                 if (response.isSuccessful()) {
                     data.setValue(response.body());
-                    Log.d("logg", "co du lieu category");
+                    Log.d("logg", "co du lieu cart");
                 } else {
-                    Log.d("logg", "dell co du lieu tu category");
+                    Log.d("logg", "dell co du lieu tu cart");
                 }
 
             }
 
             @Override
             public void onFailure(Call<CartModel> call, Throwable t) {
-                Log.d("logg", "Lỗi đọc ở đây nè, retrofit bị lỗi category");
+                Log.d("logg", "Lỗi đọc ở đây nè, retrofit bị lỗi cart");
                 Log.d("logg", t.getMessage());
                 data.setValue(null);
             }

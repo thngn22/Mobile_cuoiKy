@@ -54,7 +54,7 @@ public interface NongSanAPI {
             @Header("x-rtoken-id") String refreshToken
     );
 
-    @GET(Constant.URL_PRODUCT_DETAIL + "{productId}")
+    @GET(Constant.URL_PRODUCT_DETAIL + "{productId}/")
     Call<ProductDetailModel>  getProductDetail(
             @Path("productId") String productId
 
@@ -73,15 +73,16 @@ public interface NongSanAPI {
     @POST(Constant.URL_ADD_CART)
     @FormUrlEncoded
     Call<CartModel> getUpdateAddCart(
+            @Header("Authorization") String accessToken,
+            @Header("x-client-id") String clientId,
+            @Header("x-rtoken-id") String refreshToken,
             @Field("id") String id,
             @Field("name") String name,
             @Field("thumb") String thumb,
             @Field("description") String description,
             @Field("quantity") int quantity,
-            @Field("price") int price,
-            @Header("Authorization") String accessToken,
-            @Header("x-client-id") String clientId,
-            @Header("x-rtoken-id") String refreshToken
+            @Field("price") int price
+
             );
     @POST(Constant.URL_REMOVE_CART)
     @FormUrlEncoded
