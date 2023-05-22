@@ -17,6 +17,7 @@ import vn.iotstar.nongsan.R;
 import vn.iotstar.nongsan.databinding.ItemCartBinding;
 import vn.iotstar.nongsan.listener.ChangeNumberListener;
 import vn.iotstar.nongsan.models.Cart;
+import vn.iotstar.nongsan.models.Product;
 import vn.iotstar.nongsan.utils.UtilsCart;
 
 public class CartAdapter extends RecyclerView.Adapter<CartAdapter.MyViewHolder> {
@@ -53,6 +54,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.MyViewHolder> 
                 addCart(holder.getAdapterPosition());
                 notifyDataSetChanged();
                 listener.change();
+
             }
         });
         holder.binding.imageSub.setOnClickListener(new View.OnClickListener() {
@@ -64,7 +66,9 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.MyViewHolder> 
             }
         });
         holder.binding.txtAmount.setText(String.valueOf(cart.getQuantity()));
-        holder.binding.txtPriceSum.setText(cart.getQuantity() * cart.getPrice() + "đ");
+        int inline_quantity = Integer.parseInt(holder.binding.txtAmount.getText().toString());
+        int inline_price = Integer.parseInt(holder.binding.txtPrice.getText().toString().split("đ")[0]);
+        holder.binding.txtPriceSum.setText((inline_quantity * inline_price) + "đ");
     }
 
     private void subCart(int adapterPosition) {

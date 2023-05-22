@@ -14,11 +14,13 @@ import java.util.List;
 import vn.iotstar.nongsan.R;
 import vn.iotstar.nongsan.databinding.ItemProductBinding;
 import vn.iotstar.nongsan.listener.CategoryEventClickListener;
+import vn.iotstar.nongsan.listener.ChangeNumberListener;
 import vn.iotstar.nongsan.models.Product;
 
 public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.MyViewHolder> {
     private List<Product> productList;
     private CategoryEventClickListener listener;
+
     public ProductAdapter(List<Product> productList, CategoryEventClickListener listener){
         this.productList = productList;
         this.listener = listener;
@@ -58,12 +60,15 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.MyViewHo
         private void setBinding(Product product){
             binding.setProduct(product);
             binding.executePendingBindings();
+
             binding.getRoot().setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+
                     listener.onProductClick(product);
                 }
             });
+
         }
     }
 }

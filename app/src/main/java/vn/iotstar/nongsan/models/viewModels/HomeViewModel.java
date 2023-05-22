@@ -14,10 +14,12 @@ import vn.iotstar.nongsan.repository.ProductRepository;
 public class HomeViewModel extends ViewModel {
     private CategoryRepository categoryRepository;
     private ProductRepository productRepository;
+    private CartRepository cartRepository;
 
     public HomeViewModel() {
         categoryRepository = new CategoryRepository();
         productRepository = new ProductRepository();
+        cartRepository = new CartRepository();
     }
 
     public MutableLiveData<CategoryModel> categoryModelMutableLiveData() {
@@ -26,4 +28,8 @@ public class HomeViewModel extends ViewModel {
     public MutableLiveData<ProductModel> productModelMutableLiveData(){
         return productRepository.getProductModel();
     }
+    public MutableLiveData<CartModel> getListCart(String accessToken, String clientId, String refreshToken){
+        return cartRepository.getListCart(accessToken, clientId, refreshToken);
+    }
+
 }

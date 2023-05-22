@@ -12,6 +12,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
+import android.widget.Toast;
 
 //import io.paperdb.Paper;
 import java.util.ArrayList;
@@ -26,7 +27,9 @@ import vn.iotstar.nongsan.listener.HomeEventClickListener;
 import vn.iotstar.nongsan.models.Cart;
 import vn.iotstar.nongsan.models.Category;
 import vn.iotstar.nongsan.models.Product;
+import vn.iotstar.nongsan.models.viewModels.CartViewModel;
 import vn.iotstar.nongsan.models.viewModels.HomeViewModel;
+import vn.iotstar.nongsan.models.viewModels.ProductViewModel;
 import vn.iotstar.nongsan.utils.UtilsCart;
 import vn.iotstar.nongsan.utils.UtilsTokens;
 import vn.iotstar.nongsan.utils.UtilsUser;
@@ -51,6 +54,29 @@ public class HomeActivity extends AppCompatActivity implements HomeEventClickLis
                 finish();
             }
         });
+        binding.orderMain.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                onCartClick();
+
+            }
+        });
+        binding.search.setOnKeyListener(new View.OnKeyListener() {
+            @Override
+            public boolean onKey(View v, int keyCode, KeyEvent event) {
+                // If the event is a key-down event on the "enter" button
+                if ((event.getAction() == KeyEvent.ACTION_DOWN) && (keyCode == KeyEvent.KEYCODE_ENTER)) {
+                    // Perform action on key press
+                    onSearchClick(binding.search.getText().toString());
+                    return true;
+                }
+
+                return false;
+            }
+        });
+
+        binding.tvhi.setText("Welcome back " + UtilsUser.user.getName());
     }
 
     private void initData() {
@@ -70,8 +96,7 @@ public class HomeActivity extends AppCompatActivity implements HomeEventClickLis
                 Log.d("logg", (String.valueOf(adapter.getItemCount())));
             }
         });
-        Paper.book().write("token", UtilsTokens.tokens);
-
+        //Paper.book().write("token", UtilsTokens.tokens);
     }
 
     private void initView() {
@@ -83,26 +108,39 @@ public class HomeActivity extends AppCompatActivity implements HomeEventClickLis
         RecyclerView.LayoutManager layoutManagerPopular = new GridLayoutManager(this, 3);
         binding.rcPopular.setLayoutManager(layoutManagerPopular);
 
-        binding.orderMain.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), CartActivity.class);
-                startActivity(intent);
-            }
-        });
-        binding.search.setOnKeyListener(new View.OnKeyListener() {
-            @Override
-            public boolean onKey(View v, int keyCode, KeyEvent event) {
-                // If the event is a key-down event on the "enter" button
-                if ((event.getAction() == KeyEvent.ACTION_DOWN) && (keyCode == KeyEvent.KEYCODE_ENTER)) {
-                    // Perform action on key press
-                    onSearchClick(binding.search.getText().toString());
-                    return true;
+
+    }
+
+    private void onCartClick() {
+
+        Intent intent = new Intent(getApplicationContext(), CartActivity.class);
+
+        String accessToken = UtilsTokens.tokens.getAccessToken();
+        String clientId = UtilsUser.user.getId();
+        String refreshToken = UtilsTokens.tokens.getRefreshToken();
+        homeViewModel.getListCart(accessToken, clientId, refreshToken).observe(this, cartModel -> {
+            if (cartModel.getStatus() == 200) {
+                Log.d("logg", "[Home Activity] có giỏ hàng metadata voi so luong: " + cartModel.getMetadata().size());
+                UtilsCart.listCart = cartModel.getMetadata();
+                for (int i = 0; i < cartModel.getMetadata().size(); i++) {
+                    Log.d("logg", "so luong" + cartModel.getMetadata().get(i).getName() + " : " + cartModel.getMetadata().get(i).getQuantity());
                 }
 
-                return false;
+
+
+                Log.d("logg", "[Home Activity] có giỏ hàng Utils.Cart voi so luong: " + UtilsCart.listCart.size());
+                for (int i = 0; i < UtilsCart.listCart.size(); i++) {
+                    Log.d("logg", "so luong" + UtilsCart.listCart.get(i).getName() + " : " + UtilsCart.listCart.get(i).getQuantity());
+                }
+
+
+            } else {
+                Log.d("logg", "[Home Activity] không có giỏ hàng");
+                Toast.makeText(getApplicationContext(), "Chưa add dc cart", Toast.LENGTH_SHORT).show();
             }
         });
+        Paper.book().write("cartList", UtilsCart.listCart);
+        startActivity(intent);
     }
 
     @Override

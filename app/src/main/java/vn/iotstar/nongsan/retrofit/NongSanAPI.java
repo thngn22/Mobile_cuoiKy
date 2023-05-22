@@ -68,7 +68,12 @@ public interface NongSanAPI {
     );
 
 
-
+    @POST(Constant.URL_LIST_CART)
+    Call<CartModel> getListCart(
+            @Header("Authorization") String accessToken,
+            @Header("x-client-id") String clientId,
+            @Header("x-rtoken-id") String refreshToken
+    );
 
     @POST(Constant.URL_ADD_CART)
     @FormUrlEncoded

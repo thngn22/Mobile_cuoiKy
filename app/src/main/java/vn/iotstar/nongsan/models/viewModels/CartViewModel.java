@@ -8,15 +8,17 @@ import vn.iotstar.nongsan.models.LoginModel;
 import vn.iotstar.nongsan.models.ProductDetail;
 import vn.iotstar.nongsan.models.ProductModel;
 import vn.iotstar.nongsan.repository.CartRepository;
+import vn.iotstar.nongsan.repository.OrderRepository;
 import vn.iotstar.nongsan.repository.ProductDetailRepository;
 import vn.iotstar.nongsan.repository.ProductRepository;
 
 public class CartViewModel extends ViewModel {
-    private CartRepository cartRepository;
+    private OrderRepository orderRepository;
 
     public CartViewModel() {
-        cartRepository = new CartRepository();
+        orderRepository = new OrderRepository();
     }
-
-
+//    public MutableLiveData<CartModel> cartModelMutableLiveData(String accessToken, String clientId, String refreshToken, String id, String name, String thumb, String description, int quantity, int price){
+//        return orderRepository.getUpdateAddCart(accessToken, clientId, refreshToken, id, name, thumb, description, quantity, price);
+//    }
 }

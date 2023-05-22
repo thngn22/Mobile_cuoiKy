@@ -27,6 +27,7 @@ public class Constant {
     public static final String URL_SEARCH = ROOT_URL + "product/search/";
     public static final String URL_ADD_CART = ROOT_URL + "cart/add/";
     public static final String URL_REMOVE_CART = ROOT_URL + "cart/remove/";
+    public static final String URL_LIST_CART = ROOT_URL + "cart/";
     public static final String URL_UPDATE_ORDER = ROOT_URL + "order/";
     public static final String URL_PLACE_ORDER = ROOT_URL + "order/";
 

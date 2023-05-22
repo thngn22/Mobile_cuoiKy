@@ -97,11 +97,6 @@ public class LoginActivity extends AppCompatActivity {
                 Log.d("logg", "refreshToken: " + refreshToken);
 
                 Intent intent = new Intent(getApplicationContext(), HomeActivity.class);
-                intent.putExtra("id", id);
-                intent.putExtra("username", name);
-                intent.putExtra("mail", email);
-                intent.putExtra("phone", phone);
-                intent.putExtra("image", image);
                 startActivity(intent);
 
             } else {

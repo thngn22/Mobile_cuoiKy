@@ -19,7 +19,7 @@
         android:theme="@style/Theme.MaterialComponents.Light.NoActionBar"
         tools:targetApi="31">
         <activity
-            android:name=".SendOTP"
+            android:name=".activities.SendOTP"
             android:exported="false"
             android:label="@string/title_activity_send_otp" />
         <activity
@@ -45,7 +45,8 @@
             android:exported="false" />
         <activity
             android:name=".activities.CartActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:parentActivityName=".activities.HomeActivity"/>
         <activity
             android:name=".activities.ProductActivity"
             android:exported="false" />

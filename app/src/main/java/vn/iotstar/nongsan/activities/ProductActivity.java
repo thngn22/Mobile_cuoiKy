@@ -36,13 +36,12 @@ public class ProductActivity extends AppCompatActivity {
     int amount = 1;
     int price = 1;
     String id, name, thumb, description;
-    int quantity;
+    int quantity = 1;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_product);
-        Paper.init(this);
         String id = getIntent().getStringExtra("id");
         Log.d("logg", id);
         getData(id);
@@ -55,37 +54,46 @@ public class ProductActivity extends AppCompatActivity {
         if (Paper.book().read("cartList") != null) {
             List<Cart> cartList = Paper.book().read("cartList");
             UtilsCart.listCart = cartList;
-        }
-
-
-        if (UtilsCart.listCart.size() > 0) {
-            for (int i = 0; i < UtilsCart.listCart.size(); i++) {
-                if (UtilsCart.listCart.get(i).getId() == id) {
-                    binding.txtProductAmount.setText(UtilsCart.listCart.get(i).getQuantity() + "");
+            if (UtilsCart.listCart.size() > 0) {
+                for (int i = 0; i < UtilsCart.listCart.size(); i++) {
+                    if (UtilsCart.listCart.get(i).getProductId() == id) {
+                        binding.txtProductAmount.setText(amount + "");
+                    }
                 }
+            } else {
+                binding.txtProductAmount.setText(amount + "");
             }
-        } else {
-            binding.txtProductAmount.setText(amount + "");
         }
+
+
+
     }
 
     private void getData(String id) {
 
         viewModel = new ViewModelProvider(this).get(ProductViewModel.class);
         viewModel.productDetailModelMutableLiveData(id).observe(this, productDetailModel -> {
+            List<Cart> cartList = UtilsCart.listCart;
+
             Log.d("logg", productDetailModel.getMetadata().toString());
             ProductDetail productDetail = productDetailModel.getMetadata();
-            Log.d("logg", productDetail.getId());
+            Log.d("logg", "id của sản phẩm: " + productDetail.getId());
+
+            for (int i = 0; i < cartList.size(); i++){
+                if (cartList.get(i).getProductId() == productDetail.getId()){
+                    binding.txtProductAmount.setText(cartList.get(i).getQuantity());
+                    amount = Integer.parseInt(binding.txtProductAmount.getText().toString());
+                }
+            }
+
             binding.txtNameFood.setText(productDetail.getName());
             binding.txtDesc.setText(productDetail.getDescription());
             binding.txtPrice.setText(productDetail.getPrice() + "đ");
-            price = Integer.parseInt(binding.txtPrice.getText().toString().split("đ")[0]);
 
             this.id = productDetail.getId();
             name = productDetail.getName();
             thumb = productDetail.getThumb();
             description = productDetail.getDescription();
-            quantity = productDetail.getQuantity();
             price = productDetail.getPrice();
 
             //price = binding.txtPrice.getText();
@@ -152,42 +160,58 @@ public class ProductActivity extends AppCompatActivity {
     }
 
     private void addToCart() {
-        Paper.book().write("cartList", UtilsCart.listCart);
+        //Paper.book().write("cartList", UtilsCart.listCart);
+        boolean flag = false;
         List<Cart> cartList = UtilsCart.listCart;
-        for (int i = 0; i < cartList.size(); i++) {
-            if (cartList.get(i).getProductId() == id) {
-                cartList.add(cartList.get(i));
-                UtilsCart.listCart = cartList;
-                Log.d("logg", "đã lấy dc product có id = " + cartList.get(i).getProductId());
-                Toast.makeText(getApplicationContext(), "Added to your Cart", Toast.LENGTH_SHORT).show();
-                break;
-            }
-            Log.d("logg", "du lieu trong cart gom: " + cartList.get(i).getProductId());
 
+        try{
+            for (int i = 0; i < cartList.size(); i++) {
+                if (cartList.get(i).getProductId() == id) {
+
+                    cartList.get(i).setQuantity(amount);
+                    UtilsCart.listCart = cartList;
+                    Paper.book().write("cartList", UtilsCart.listCart);
+                    Log.d("logg", "đã lấy dc product có id = " + cartList.get(i).getProductId());
+                    Toast.makeText(getApplicationContext(), "Added to your Cart", Toast.LENGTH_SHORT).show();
+                    flag = true;
+
+
+                    break;
+                }
+                Log.d("logg", "du lieu trong cart gom: " + cartList.get(i).getProductId());
+
+            }
         }
-        viewModel = new ViewModelProvider(this).get(ProductViewModel.class);
+        catch (Exception e){
+            Log.d("logg", "Không có dữ liệu trong Paper");
+        }
 
-        String accessToken =  UtilsTokens.tokens.getAccessToken();
-        String clientId = UtilsUser.user.getId();
-        String refreshToken = UtilsTokens.tokens.getRefreshToken();
+        if (flag == false) {
+            viewModel = new ViewModelProvider(this).get(ProductViewModel.class);
 
-        Log.d("logg", "accessToken:" + accessToken);
-        Log.d("logg", "clientId: " + clientId);
-        Log.d("logg", "refreshToken" + refreshToken);
+            String accessToken =  UtilsTokens.tokens.getAccessToken();
+            String clientId = UtilsUser.user.getId();
+            String refreshToken = UtilsTokens.tokens.getRefreshToken();
 
-        viewModel.cartModelMutableLiveData(accessToken, clientId, refreshToken, id, name, thumb, description, quantity, price).observe(this, cartModel -> {
-            if (cartModel.getStatus() == 200) {
-                Log.d("logg", "có giỏ hàng" + cartModel.getMetadata().size());
+            Log.d("logg", "accessToken:" + accessToken);
+            Log.d("logg", "clientId: " + clientId);
+            Log.d("logg", "refreshToken" + refreshToken);
 
-                UtilsCart.listCart = cartModel.getMetadata();
-
-                Toast.makeText(getApplicationContext(), "Added to your Cart", Toast.LENGTH_SHORT).show();
-            } else {
-                Log.d("logg", "không có giỏ hàng");
-                Toast.makeText(getApplicationContext(), "Chưa add dc cart", Toast.LENGTH_SHORT).show();
-            }
-        });
-        Paper.book().write("cartList", UtilsCart.listCart);
+            quantity = amount;
+            viewModel.cartModelMutableLiveData(accessToken, clientId, refreshToken, id, name, thumb, description, quantity, price).observe(this, cartModel -> {
+                if (cartModel.getStatus() == 200) {
+                    Log.d("logg", "[Product Activity] có giỏ hàng: " + cartModel.getMetadata().size());
+                    List<Cart> list = cartModel.getMetadata();
+                    UtilsCart.listCart = list;
+                    Toast.makeText(getApplicationContext(), "Added to your Cart", Toast.LENGTH_SHORT).show();
+                } else {
+                    Log.d("logg", "[Product Activity] không có giỏ hàng!");
+                    Toast.makeText(getApplicationContext(), "Chưa add dc cart", Toast.LENGTH_SHORT).show();
+                }
+            });
+            Paper.book().write("cartList", UtilsCart.listCart);
+            finish();
+        }
 
     }
 }

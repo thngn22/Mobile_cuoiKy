@@ -43,4 +43,28 @@ public class CartRepository {
         });
         return data;
     }
+
+    public MutableLiveData<CartModel> getListCart(String accessToken, String clientId, String refreshToken) {
+        MutableLiveData<CartModel> data = new MutableLiveData<>();
+        nongSanAPI.getListCart(accessToken, clientId, refreshToken).enqueue(new Callback<CartModel>() {
+            @Override
+            public void onResponse(Call<CartModel> call, Response<CartModel> response) {
+                if (response.isSuccessful()) {
+                    data.setValue(response.body());
+                    Log.d("logg", "co du lieu cart");
+                } else {
+                    Log.d("logg", "dell co du lieu tu cart");
+                }
+
+            }
+
+            @Override
+            public void onFailure(Call<CartModel> call, Throwable t) {
+                Log.d("logg", "Lỗi đọc ở đây nè, retrofit bị lỗi cart");
+                Log.d("logg", t.getMessage());
+                data.setValue(null);
+            }
+        });
+        return data;
+    }
 }

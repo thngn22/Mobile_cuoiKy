@@ -1,13 +1,13 @@
 package vn.iotstar.nongsan.models;
 
 public class Cart {
-    private String id, cartId, name, thumb, productId;
-    private int quantity, price;
+    private String cartId, name, thumb, productId;
+    private int id, quantity, price;
 
     public Cart() {
     }
 
-    public Cart(String id, String cartId, String name, String thumb, String productId, int quantity, int price) {
+    public Cart(int id, String cartId, String name, String thumb, String productId, int quantity, int price) {
         this.id = id;
         this.cartId = cartId;
         this.name = name;
@@ -17,11 +17,11 @@ public class Cart {
         this.price = price;
     }
 
-    public String getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
 
